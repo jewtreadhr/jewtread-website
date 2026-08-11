@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications Audit | Admin Control Panel | Jewtread HR</title>
+    <meta name="description" content="View and manage all job applications submitted across Jewtread HR.">
+    <link rel="icon" type="image/png" href="jewtread_logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Jewtread<span>HR</span> <small style="font-size:0.65rem; background:var(--accent-gold); color:var(--primary-forest); padding:2px 6px; border-radius:2px; vertical-align:middle; text-transform:uppercase; font-family:var(--font-body); font-weight:800; margin-left:4px;">ADMIN</small></a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="admin-dashboard.html">Overview</a>
+                <a href="admin-users.html">Users</a>
+                <a href="admin-jobs.html">Vacancies</a>
+                <a href="admin-applications.html" class="active">Applications</a>
+                <a href="admin-audit-logs.html">Audit Logs</a>
+                <div class="nav-dropdown" id="profile-dropdown">
+                    <button type="button" class="nav-dropdown-toggle" id="profile-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+                        <span class="avatar-sm" style="background:#854d0e; color:#fef08a;">ADM</span>
+                        <span>Administrator</span>
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu" id="profile-dropdown-menu">
+                        <a href="admin-dashboard.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                            Platform Overview
+                        </a>
+                        <a href="admin-users.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                            User Accounts
+                        </a>
+                        <a href="admin-jobs.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            Vacancies
+                        </a>
+                        <a href="admin-applications.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                            Applications
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="index.html" class="dropdown-item logout-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                            Exit Control Panel
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="container">
+
+            <section class="dashboard-welcome">
+                <div>
+                    <span class="section-kicker">Admin Control Panel</span>
+                    <h1>Applications Audit Log</h1>
+                    <p>Track candidate submissions, interview statuses, and placement outcomes across Jewtread HR.</p>
+                </div>
+                <div style="display:flex; gap:12px; align-items:center;">
+                    <select id="app-status-filter" style="padding:10px 14px; border:1px solid var(--border-color); font-family:var(--font-body); font-size:0.87rem; background:var(--bg-white);" onchange="filterApps(this.value)">
+                        <option value="all">All Statuses</option>
+                        <option value="submitted">Submitted / New</option>
+                        <option value="shortlisted">Shortlisted</option>
+                        <option value="interview">Interview Scheduled</option>
+                        <option value="placed">Placed / Hired</option>
+                        <option value="rejected">Declined</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Metrics -->
+            <section class="dashboard-section">
+                <div class="activity-grid">
+                    <div>
+                        <strong>48</strong>
+                        <span>Total Applications</span>
+                        <p>Platform-wide lifetime.</p>
+                    </div>
+                    <div>
+                        <strong>18</strong>
+                        <span>Shortlisted</span>
+                        <p>Under active consideration.</p>
+                    </div>
+                    <div>
+                        <strong>8</strong>
+                        <span>Interviews Active</span>
+                        <p>Scheduled this month.</p>
+                    </div>
+                    <div>
+                        <strong>12</strong>
+                        <span>Total Placements</span>
+                        <p>Successful hiring matches.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Applications Audit Table -->
+            <section class="dashboard-section">
+                <div class="section-heading-row">
+                    <div>
+                        <span class="section-kicker">Submissions Log</span>
+                        <h2>Candidate Submissions</h2>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Candidate</th>
+                                <th>Vacancy Applied For</th>
+                                <th>Category</th>
+                                <th>Location</th>
+                                <th>Submitted Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="apps-tbody">
+                            <tr data-status="shortlisted">
+                                <td><strong>Adaeze Faithful</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">adaeze@email.com</span></td>
+                                <td>Executive Personal Assistant</td>
+                                <td>Domestic Staffing</td>
+                                <td>Lagos</td>
+                                <td>2 days ago</td>
+                                <td><span class="status-badge shortlisted">Shortlisted</span></td>
+                                <td><button class="btn btn-secondary" style="font-size:0.78rem; padding:5px 10px;" onclick="showToast('CV download started.')">View CV</button></td>
+                            </tr>
+                            <tr data-status="placed">
+                                <td><strong>Babatunde Collins</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">babatunde@email.com</span></td>
+                                <td>Operations Manager</td>
+                                <td>Corporate Recruitment</td>
+                                <td>Abuja</td>
+                                <td>3 days ago</td>
+                                <td><span class="status-badge shortlisted" style="background:#dcfce7; color:#15803d; border-color:#86efac;">Placed / Hired</span></td>
+                                <td><button class="btn btn-secondary" style="font-size:0.78rem; padding:5px 10px;" onclick="showToast('CV download started.')">View CV</button></td>
+                            </tr>
+                            <tr data-status="submitted">
+                                <td><strong>Chioma Ezekwe</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">chioma@email.com</span></td>
+                                <td>Household Chef</td>
+                                <td>Domestic Staffing</td>
+                                <td>Port Harcourt</td>
+                                <td>Today</td>
+                                <td><span class="status-badge pending">New / Submitted</span></td>
+                                <td><button class="btn btn-secondary" style="font-size:0.78rem; padding:5px 10px;" onclick="showToast('CV download started.')">View CV</button></td>
+                            </tr>
+                            <tr data-status="shortlisted">
+                                <td><strong>Emeka Okonkwo</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">emeka@email.com</span></td>
+                                <td>Operations Manager</td>
+                                <td>Corporate Recruitment</td>
+                                <td>Abuja</td>
+                                <td>4 days ago</td>
+                                <td><span class="status-badge pending">Under Review</span></td>
+                                <td><button class="btn btn-secondary" style="font-size:0.78rem; padding:5px 10px;" onclick="showToast('CV download started.')">View CV</button></td>
+                            </tr>
+                            <tr data-status="interview">
+                                <td><strong>Fatima Mahmud</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">fatima@email.com</span></td>
+                                <td>Executive Personal Assistant</td>
+                                <td>Domestic Staffing</td>
+                                <td>Lagos</td>
+                                <td>5 days ago</td>
+                                <td><span class="status-badge shortlisted">Interview Scheduled</span></td>
+                                <td><button class="btn btn-secondary" style="font-size:0.78rem; padding:5px 10px;" onclick="showToast('CV download started.')">View CV</button></td>
+                            </tr>
+                            <tr data-status="rejected">
+                                <td><strong>Grace Obi</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">grace@email.com</span></td>
+                                <td>Household Chef</td>
+                                <td>Domestic Staffing</td>
+                                <td>Port Harcourt</td>
+                                <td>6 days ago</td>
+                                <td><span class="status-badge rejected">Declined</span></td>
+                                <td><button class="btn btn-secondary" style="font-size:0.78rem; padding:5px 10px;" onclick="showToast('CV download started.')">View CV</button>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Table Pagination -->
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; padding-top:16px; border-top:1px solid var(--border-color); flex-wrap:wrap; gap:12px;">
+                    <span style="font-size:0.88rem; color:var(--text-muted);">Showing <strong>1–6</strong> of <strong>48</strong> applications</span>
+                    <div style="display:flex; gap:6px;">
+                        <button class="btn btn-secondary" style="font-size:0.8rem; padding:6px 12px;" disabled>&laquo; Prev</button>
+                        <button class="btn btn-primary" style="font-size:0.8rem; padding:6px 12px;">1</button>
+                        <button class="btn btn-secondary" style="font-size:0.8rem; padding:6px 12px;" onclick="showToast('Loading page 2...')">2</button>
+                        <button class="btn btn-secondary" style="font-size:0.8rem; padding:6px 12px;" onclick="showToast('Loading page 3...')">3</button>
+                        <span style="padding:6px 8px; color:var(--text-muted); font-size:0.85rem;">...</span>
+                        <button class="btn btn-secondary" style="font-size:0.8rem; padding:6px 12px;" onclick="showToast('Loading page 8...')">8</button>
+                        <button class="btn btn-secondary" style="font-size:0.8rem; padding:6px 12px;" onclick="showToast('Loading page 2...')">Next &raquo;</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-main">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">Jewtread<span>HR</span></a>
+                <p>Connecting dependable professionals with households and businesses across Nigeria.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Admin Panel</h3>
+                <a href="admin-dashboard.html">Overview</a>
+                <a href="admin-users.html">User Accounts</a>
+                <a href="admin-jobs.html">Vacancies</a>
+                <a href="admin-applications.html">Applications</a>
+            </div>
+            <div class="footer-links">
+                <h3>Main Site</h3>
+                <a href="index.html">Home</a>
+                <a href="job-opportunities.html">Job Listings</a>
+                <a href="services.html">Services</a>
+            </div>
+            <div class="footer-links">
+                <h3>Jewtread HR</h3>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Jewtread HR. All Rights Reserved.</p>
+            <p>Building Better Homes and Stronger Businesses.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function filterApps(status) {
+            const rows = document.querySelectorAll('#apps-tbody tr');
+            rows.forEach(r => {
+                r.style.display = (status === 'all' || r.dataset.status === status) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

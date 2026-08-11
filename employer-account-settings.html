@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Account Settings | Jewtread HR</title>
+    <meta name="description" content="Manage your employer portal login, notification preferences, team access, and security.">
+    <link rel="icon" type="image/png" href="jewtread_logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="account-page">
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Jewtread<span>HR</span></a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="employer-dashboard.html">Dashboard</a>
+                <a href="employer-post-job.html">Post a Job</a>
+                <a href="employer-candidates.html">Candidates</a>
+                <a href="employer-interviews.html">Interviews</a>
+                <a href="employer-requests.html">Service Requests</a>
+                <div class="nav-dropdown" id="profile-dropdown">
+                    <button type="button" class="nav-dropdown-toggle" id="profile-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+                        <span class="avatar-sm">EMP</span>
+                        <span>Company</span>
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu" id="profile-dropdown-menu">
+                        <a href="employer-profile.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            Company Profile
+                        </a>
+                        <a href="employer-post-job.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                            Post a Job
+                        </a>
+                        <a href="employer-candidates.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                            Candidates
+                        </a>
+                        <a href="employer-interviews.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            Interviews
+                        </a>
+                        <a href="employer-requests.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            Service Requests
+                        </a>
+                        <a href="employer-account-settings.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                            Account Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="index.html" class="dropdown-item logout-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                            Sign out
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main style="padding: 40px 0;">
+        <div class="container">
+            <div style="margin-bottom: 32px;">
+                <span class="section-kicker">Employer Portal</span>
+                <h1>Employer Account Settings</h1>
+                <p style="margin-bottom: 0;">Configure your corporate login credentials, team member access, and notification settings.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 280px 1fr; gap: 32px;" class="account-settings-grid">
+                
+                <!-- Navigation Sidebar -->
+                <aside style="background-color: var(--bg-white); border: 1px solid var(--border-color); border-radius: 0; padding: 20px; height: fit-content;">
+                    <nav style="display: flex; flex-direction: column; gap: 6px;">
+                        <button type="button" class="account-tab-btn active" data-target="emp-sec-security" style="width: 100%; text-align: left; padding: 12px 14px; background-color: var(--bg-light); border: none; border-left: 3px solid var(--cta-emerald); font-family: var(--font-body); font-weight: 600; color: var(--primary-forest); cursor: pointer; font-size: 0.92rem;">Security &amp; Password</button>
+                        <button type="button" class="account-tab-btn" data-target="emp-sec-team" style="width: 100%; text-align: left; padding: 12px 14px; background-color: transparent; border: none; border-left: 3px solid transparent; font-family: var(--font-body); font-weight: 500; color: var(--text-charcoal); cursor: pointer; font-size: 0.92rem;">Team Members &amp; Access</button>
+                        <button type="button" class="account-tab-btn" data-target="emp-sec-notifications" style="width: 100%; text-align: left; padding: 12px 14px; background-color: transparent; border: none; border-left: 3px solid transparent; font-family: var(--font-body); font-weight: 500; color: var(--text-charcoal); cursor: pointer; font-size: 0.92rem;">Application Alerts</button>
+                    </nav>
+                </aside>
+
+                <!-- Settings Content Area -->
+                <div style="display: flex; flex-direction: column;">
+                    
+                    <!-- Section 1: Security -->
+                    <section id="emp-sec-security" class="account-settings-section active" style="background-color: var(--bg-white); border: 1px solid var(--border-color); border-radius: 0; padding: 28px;">
+                        <h2 style="font-size: 1.25rem; margin-bottom: 20px; color: var(--primary-forest); font-weight:700;">Password &amp; Login Security</h2>
+                        <form id="emp-password-form">
+                            <div style="margin-bottom: 16px;">
+                                <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem;">Current Password *</label>
+                                <input type="password" required placeholder="Enter current password" style="width: 100%; padding: 11px 14px; border: 1px solid var(--border-color); border-radius: 6px;">
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+                                <div>
+                                    <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem;">New Password *</label>
+                                    <input type="password" required minlength="8" placeholder="At least 8 characters" style="width: 100%; padding: 11px 14px; border: 1px solid var(--border-color); border-radius: 6px;">
+                                </div>
+                                <div>
+                                    <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem;">Confirm New Password *</label>
+                                    <input type="password" required minlength="8" placeholder="Re-enter new password" style="width: 100%; padding: 11px 14px; border: 1px solid var(--border-color); border-radius: 6px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update Password</button>
+                        </form>
+                    </section>
+
+                    <!-- Section 2: Team Members -->
+                    <section id="emp-sec-team" class="account-settings-section" style="display: none; background-color: var(--bg-white); border: 1px solid var(--border-color); border-radius: 0; padding: 28px;">
+                        <h2 style="font-size: 1.25rem; margin-bottom: 8px; color: var(--primary-forest); font-weight:700;">Team Members &amp; Co-Recruiters</h2>
+                        <p style="margin-bottom: 20px; font-size: 0.92rem; color: var(--text-muted);">Invite hiring managers or household representatives to view applicants.</p>
+
+                        <div style="margin-bottom: 20px;">
+                            <div style="display:flex; gap:10px; margin-bottom:16px;">
+                                <input type="email" id="invite-email" placeholder="colleague@yourcompany.com" style="flex:1; padding:11px 14px; border:1px solid var(--border-color); border-radius:6px;">
+                                <button type="button" class="btn btn-primary" onclick="showToast('Invitation sent.')">Invite Member</button>
+                            </div>
+                            <div style="border:1px solid var(--border-color); padding:12px 16px; border-radius:6px; display:flex; justify-space-between; align-items:center;">
+                                <div>
+                                    <strong style="display:block; font-size:0.92rem;">Primary Recruiter (You)</strong>
+                                    <small style="color:var(--text-muted);">hr@ekocapitalgroup.com · Admin Access</small>
+                                </div>
+                                <span class="status-badge shortlisted">Owner</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section 3: Notifications -->
+                    <section id="emp-sec-notifications" class="account-settings-section" style="display: none; background-color: var(--bg-white); border: 1px solid var(--border-color); border-radius: 0; padding: 28px;">
+                        <h2 style="font-size: 1.25rem; margin-bottom: 8px; color: var(--primary-forest); font-weight:700;">Application Alerts</h2>
+                        <p style="margin-bottom: 20px; font-size: 0.92rem; color: var(--text-muted);">Manage email notifications when new candidates apply.</p>
+
+                        <form id="emp-notify-form">
+                            <div style="margin-bottom: 14px;">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox" checked onchange="showToast('Alert preferences saved.')">
+                                    <span style="font-size: 0.92rem;">Email me instantly when a candidate submits an application</span>
+                                </label>
+                            </div>
+                            <div style="margin-bottom: 14px;">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox" checked onchange="showToast('Alert preferences saved.')">
+                                    <span style="font-size: 0.92rem;">Send daily candidate digest summary</span>
+                                </label>
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox" checked onchange="showToast('Alert preferences saved.')">
+                                    <span style="font-size: 0.92rem;">Notify when Jewtread HR specialist assigns verified candidates</span>
+                                </label>
+                            </div>
+                        </form>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-main">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">Jewtread<span>HR</span></a>
+                <p>Connecting dependable professionals with households and businesses across Nigeria.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Employers</h3>
+                <a href="employer-dashboard.html">Employer Dashboard</a>
+                <a href="employer-post-job.html">Post a Vacancy</a>
+                <a href="employer-candidates.html">Manage Candidates</a>
+                <a href="employer-account-settings.html">Account Settings</a>
+            </div>
+            <div class="footer-links">
+                <h3>Job Seekers</h3>
+                <a href="job-opportunities.html">Browse Roles</a>
+                <a href="job-seeker-dashboard.html">Seeker Dashboard</a>
+            </div>
+            <div class="footer-links">
+                <h3>Jewtread HR</h3>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Our Services</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Jewtread HR. All Rights Reserved.</p>
+            <p>Building Better Homes and Stronger Businesses.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.account-tab-btn');
+            const sections = document.querySelectorAll('.account-settings-section');
+            tabs.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabs.forEach(b => {
+                        b.classList.remove('active');
+                        b.style.backgroundColor = 'transparent';
+                        b.style.borderLeftColor = 'transparent';
+                        b.style.fontWeight = '500';
+                    });
+                    sections.forEach(s => s.style.display = 'none');
+                    btn.classList.add('active');
+                    btn.style.backgroundColor = 'var(--bg-light)';
+                    btn.style.borderLeftColor = 'var(--cta-emerald)';
+                    btn.style.fontWeight = '600';
+                    const target = document.getElementById(btn.dataset.target);
+                    if (target) target.style.display = 'block';
+                });
+            });
+            document.getElementById('emp-password-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                showToast('Password updated successfully.');
+            });
+        });
+    </script>
+</body>
+</html>

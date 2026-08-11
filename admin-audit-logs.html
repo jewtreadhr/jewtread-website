@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security &amp; Audit Logs | Admin Control Panel | Jewtread HR</title>
+    <meta name="description" content="View security events, admin actions, and platform system audit logs on Jewtread HR.">
+    <link rel="icon" type="image/png" href="jewtread_logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Jewtread<span>HR</span> <small style="font-size:0.65rem; background:var(--accent-gold); color:var(--primary-forest); padding:2px 6px; border-radius:2px; vertical-align:middle; text-transform:uppercase; font-family:var(--font-body); font-weight:800; margin-left:4px;">ADMIN</small></a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="admin-dashboard.html">Overview</a>
+                <a href="admin-users.html">Users</a>
+                <a href="admin-jobs.html">Vacancies</a>
+                <a href="admin-applications.html">Applications</a>
+                <a href="admin-audit-logs.html" class="active">Audit Logs</a>
+                <div class="nav-dropdown" id="profile-dropdown">
+                    <button type="button" class="nav-dropdown-toggle" id="profile-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+                        <span class="avatar-sm" style="background:#854d0e; color:#fef08a;">ADM</span>
+                        <span>Administrator</span>
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu" id="profile-dropdown-menu">
+                        <a href="admin-dashboard.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                            Platform Overview
+                        </a>
+                        <a href="admin-users.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                            User Accounts
+                        </a>
+                        <a href="admin-jobs.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            Vacancies
+                        </a>
+                        <a href="admin-applications.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                            Applications
+                        </a>
+                        <a href="admin-audit-logs.html" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            Audit Logs
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="index.html" class="dropdown-item logout-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                            Exit Control Panel
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="container">
+
+            <section class="dashboard-welcome">
+                <div>
+                    <span class="section-kicker">Admin Control Panel</span>
+                    <h1>System &amp; Security Audit Logs</h1>
+                    <p>Track administrator actions, authentication events, user status changes, and data access logs across Jewtread HR.</p>
+                </div>
+                <div style="display:flex; gap:12px; align-items:center;">
+                    <select id="log-type-filter" style="padding:10px 14px; border:1px solid var(--border-color); font-family:var(--font-body); font-size:0.87rem; background:var(--bg-white);" onchange="filterLogs(this.value)">
+                        <option value="all">All Event Types</option>
+                        <option value="auth">Authentication &amp; Logins</option>
+                        <option value="user_mgmt">User Management</option>
+                        <option value="job_mgmt">Vacancy Actions</option>
+                        <option value="security">Security &amp; Policy</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Metrics -->
+            <section class="dashboard-section">
+                <div class="activity-grid">
+                    <div>
+                        <strong>1,428</strong>
+                        <span>Total Events Logged</span>
+                        <p>Platform security history.</p>
+                    </div>
+                    <div>
+                        <strong>0</strong>
+                        <span>Security Violations</span>
+                        <p>System healthy.</p>
+                    </div>
+                    <div>
+                        <strong>34</strong>
+                        <span>Admin Actions</span>
+                        <p>This month.</p>
+                    </div>
+                    <div>
+                        <strong>99.98%</strong>
+                        <span>System Uptime</span>
+                        <p>Jewtread HR Services.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Audit Table -->
+            <section class="dashboard-section">
+                <div class="section-heading-row">
+                    <div>
+                        <span class="section-kicker">Audit Trail</span>
+                        <h2>Event Activity History</h2>
+                    </div>
+                    <button class="btn btn-secondary" style="font-size:0.8rem; padding:6px 14px;" onclick="showToast('Exporting audit log CSV...')">Export CSV</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Event Type</th>
+                                <th>Performed By</th>
+                                <th>Target Resource / User</th>
+                                <th>IP Address</th>
+                                <th>Severity</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logs-tbody">
+                            <tr data-type="user_mgmt">
+                                <td><span style="font-size:0.84rem; font-family:monospace; color:var(--text-charcoal);">2026-02-06 22:45:12</span></td>
+                                <td><span class="status-badge shortlisted" style="font-weight:600;">Employer Verified</span></td>
+                                <td>Super Admin</td>
+                                <td>Eko Capital Group (hr@ekocapitalgroup.com)</td>
+                                <td><span style="font-family:monospace; font-size:0.84rem;">102.89.23.14</span></td>
+                                <td><span class="status-badge shortlisted">Info</span></td>
+                                <td style="font-size:0.85rem; color:var(--text-muted);">Verified employer corporate documents and activated posting access.</td>
+                            </tr>
+                            <tr data-type="job_mgmt">
+                                <td><span style="font-size:0.84rem; font-family:monospace; color:var(--text-charcoal);">2026-02-06 21:10:04</span></td>
+                                <td><span class="status-badge pending" style="background:#eff6ff; color:#1e40af; border-color:#bfdbfe;">Vacancy Published</span></td>
+                                <td>Eko Capital Group</td>
+                                <td>Executive Personal Assistant (Lagos)</td>
+                                <td><span style="font-family:monospace; font-size:0.84rem;">197.210.44.89</span></td>
+                                <td><span class="status-badge shortlisted">Info</span></td>
+                                <td style="font-size:0.85rem; color:var(--text-muted);">Published new vacancy listing with salary ₦250k/mo.</td>
+                            </tr>
+                            <tr data-type="auth">
+                                <td><span style="font-size:0.84rem; font-family:monospace; color:var(--text-charcoal);">2026-02-06 20:15:33</span></td>
+                                <td><span class="status-badge shortlisted">Admin Login</span></td>
+                                <td>Super Admin</td>
+                                <td>Admin Control Panel</td>
+                                <td><span style="font-family:monospace; font-size:0.84rem;">102.89.23.14</span></td>
+                                <td><span class="status-badge shortlisted">Info</span></td>
+                                <td style="font-size:0.85rem; color:var(--text-muted);">Successful authenticated login to administrator portal.</td>
+                            </tr>
+                            <tr data-type="user_mgmt">
+                                <td><span style="font-size:0.84rem; font-family:monospace; color:var(--text-charcoal);">2026-02-05 18:30:19</span></td>
+                                <td><span class="status-badge rejected">Account Suspended</span></td>
+                                <td>System Automoderator</td>
+                                <td>Spam Account #849</td>
+                                <td><span style="font-family:monospace; font-size:0.84rem;">154.120.91.02</span></td>
+                                <td><span class="status-badge pending" style="background:#fef3c7; color:#92400e; border-color:#fde68a;">Warning</span></td>
+                                <td style="font-size:0.85rem; color:var(--text-muted);">Automatically flagged and suspended for repeated invalid form submissions.</td>
+                            </tr>
+                            <tr data-type="security">
+                                <td><span style="font-size:0.84rem; font-family:monospace; color:var(--text-charcoal);">2026-02-05 14:02:50</span></td>
+                                <td><span class="status-badge shortlisted">Password Reset</span></td>
+                                <td>Adaeze Faithful</td>
+                                <td>adaeze@email.com</td>
+                                <td><span style="font-family:monospace; font-size:0.84rem;">102.90.11.45</span></td>
+                                <td><span class="status-badge shortlisted">Info</span></td>
+                                <td style="font-size:0.85rem; color:var(--text-muted);">Password successfully reset via email verification link.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Table Pagination -->
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; padding-top:16px; border-top:1px solid var(--border-color); flex-wrap:wrap; gap:12px;">
+                    <span style="font-size:0.88rem; color:var(--text-muted);">Showing <strong>1–5</strong> of <strong>1,428</strong> audit log entries</span>
+                    <div style="display:flex; gap:6px;">
+                        <button class="btn btn-secondary" style="font-size:0.8rem; padding:6px 12px;" disabled>&laquo; Prev</button>
+                        <button class="btn btn-primary" style="font-size:0.8rem; padding:6px 12px;">1</button>
+                        <button class="btn btn-secondary" style="font-size:0.8rem; padding:6px 12px;" onclick="showToast('Loading page 2...')">2</button>
+                        <button class="btn btn-secondary" style="font-size:0.8rem; padding:6px 12px;" onclick="showToast('Loading page 3...')">3</button>
+                        <span style="padding:6px 8px; color:var(--text-muted); font-size:0.85rem;">...</span>
+                        <button class="btn btn-secondary" style="font-size:0.8rem; padding:6px 12px;" onclick="showToast('Loading page 286...')">286</button>
+                        <button class="btn btn-secondary" style="font-size:0.8rem; padding:6px 12px;" onclick="showToast('Loading page 2...')">Next &raquo;</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-main">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">Jewtread<span>HR</span></a>
+                <p>Connecting dependable professionals with households and businesses across Nigeria.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Admin Panel</h3>
+                <a href="admin-dashboard.html">Overview</a>
+                <a href="admin-users.html">User Accounts</a>
+                <a href="admin-jobs.html">Vacancies</a>
+                <a href="admin-applications.html">Applications</a>
+                <a href="admin-audit-logs.html">Audit Logs</a>
+            </div>
+            <div class="footer-links">
+                <h3>Main Site</h3>
+                <a href="index.html">Home</a>
+                <a href="job-opportunities.html">Job Listings</a>
+                <a href="services.html">Services</a>
+            </div>
+            <div class="footer-links">
+                <h3>Jewtread HR</h3>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Jewtread HR. All Rights Reserved.</p>
+            <p>Building Better Homes and Stronger Businesses.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function filterLogs(type) {
+            const rows = document.querySelectorAll('#logs-tbody tr');
+            rows.forEach(r => {
+                r.style.display = (type === 'all' || r.dataset.type === type) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
