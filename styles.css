@@ -1619,14 +1619,28 @@ h1, h2, h3, h4 { font-weight: 700; }
     display: inline-flex;
     align-items: center;
     gap: 9px;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    background: url('jewtread-logo.png') center / contain no-repeat;
+    font-size: 0;
 }
 
 .logo::before {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--accent-gold);
-    content: '';
+    display: none;
+}
+
+.footer-logo {
+    display: inline-block;
+    width: 54px;
+    height: 54px;
+    background: url('jewtread-logo.png') center / contain no-repeat;
+    font-size: 0;
+    vertical-align: middle;
+}
+
+.logo small {
+    display: none;
 }
 
 .nav-menu { gap: 4px; }
