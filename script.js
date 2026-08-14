@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isActive = navMenu.classList.toggle('active');
             menuToggle.classList.toggle('active');
             menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            document.body.classList.toggle('nav-open', isActive);
         });
 
         document.addEventListener('click', (e) => {
@@ -150,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 navMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
                 menuToggle.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('nav-open');
             }
         });
 
@@ -158,7 +160,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 navMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
                 menuToggle.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('nav-open');
             });
+        });
+
+        // Keep the full-screen mobile menu predictable for keyboard users and
+        // reset it when a desktop viewport is restored.
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('nav-open');
+                menuToggle.focus();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('nav-open');
+            }
         });
     }
 
@@ -1008,7 +1032,6 @@ document.addEventListener('DOMContentLoaded', () => {
         switchAccountTab('sec-password');
     }
 });
-
 
 
 

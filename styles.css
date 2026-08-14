@@ -3094,3 +3094,130 @@ h1, h2, h3, h4 { font-weight: 700; }
     }
 }
 
+/* --------------------------------------------------------------------------
+   Phase 2: mobile-first resilience layer
+   Applied last so legacy page-specific styles retain their desktop design
+   while all shared screens scale cleanly from 320px upwards.
+   -------------------------------------------------------------------------- */
+
+img, svg { max-width: 100%; }
+img { height: auto; }
+
+button, input, select, textarea { font: inherit; }
+
+button, .btn, .tbl-btn, .save-job, .tab-btn, .nav-dropdown-toggle,
+.modal-close-btn, .filter-heading button {
+    min-height: 44px;
+}
+
+.table-responsive {
+    -webkit-overflow-scrolling: touch;
+}
+
+.custom-table { min-width: 42rem; }
+
+@media (max-width: 1024px) {
+    .container {
+        width: min(100%, 76rem);
+        padding-left: clamp(1.25rem, 3vw, 2rem);
+        padding-right: clamp(1.25rem, 3vw, 2rem);
+    }
+
+    .hero-grid, .job-details-layout { gap: clamp(1.25rem, 3vw, 2rem); }
+    .job-details-layout { grid-template-columns: minmax(0, 1fr) 18rem; }
+    .opportunities-layout { grid-template-columns: 13.5rem minmax(0, 1fr); }
+    .dashboard-grid { grid-template-columns: 15rem minmax(0, 1fr); }
+}
+
+@media (max-width: 768px) {
+    html { -webkit-text-size-adjust: 100%; }
+
+    h1 { font-size: clamp(2rem, 8vw, 2.65rem); }
+    h2 { font-size: clamp(1.55rem, 6vw, 2.1rem); }
+    h3 { font-size: clamp(1.1rem, 5vw, 1.4rem); }
+    p { font-size: 1rem; }
+
+    .nav-container { height: 4rem; }
+    .menu-toggle { width: 2.75rem; min-height: 2.75rem; padding: .5rem; }
+    .nav-menu {
+        top: 4rem;
+        padding: 1.25rem;
+        gap: .5rem;
+        align-items: stretch;
+        overflow-y: auto;
+    }
+    .nav-menu a, .nav-menu a.btn, .nav-dropdown-toggle {
+        width: 100%;
+        max-width: none;
+        min-height: 2.75rem;
+        justify-content: flex-start;
+        padding: .75rem 1rem;
+        font-size: 1rem;
+    }
+    .nav-dropdown { width: 100%; }
+    .nav-dropdown-menu {
+        position: static;
+        width: 100%;
+        margin-top: .25rem;
+        display: none;
+        transform: none;
+        box-shadow: none;
+    }
+    .nav-dropdown-menu.show { display: block; }
+    .dropdown-item { min-height: 2.75rem; padding: .75rem 1rem; }
+
+    .hero-content, .hero-grid { text-align: left; }
+    .hero-search-form, .opportunity-search { width: 100%; }
+    .opportunity-search { grid-template-columns: 1fr; gap: 0; }
+    .opportunity-search > div { border-right: 0; border-bottom: 1px solid var(--line); }
+    .opportunity-search .btn { width: 100%; }
+    .search-input-group { min-width: 0; }
+    .hero-image-wrapper { width: min(100%, 32rem); margin: 0 auto; }
+
+    .dashboard-grid, .opportunities-layout, .job-details-layout { grid-template-columns: 1fr; }
+    .filter-panel { order: 2; }
+    .application-panel { position: static; }
+    .dashboard-role, .opportunity-card { align-items: flex-start; flex-direction: column; }
+    .dashboard-role > *, .opportunity-card-actions { width: 100%; }
+    .opportunity-card-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .dashboard-welcome, .applications-header { padding: clamp(1.25rem, 5vw, 2rem); }
+    .dashboard-welcome .btn, .applications-header .btn { width: 100%; }
+
+    /* Several dashboard pages contain intentional inline desktop grids. */
+    .dashboard-main [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+    .dashboard-main [style*="display:flex"] { flex-wrap: wrap; }
+
+    .portal-topbar { position: static; align-items: flex-start; flex-direction: column; }
+    .portal-topbar-actions { width: 100%; flex-wrap: wrap; }
+    .portal-topbar-actions .btn { flex: 1 1 12rem; }
+    .portal-sidebar-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: .5rem; }
+    .portal-nav-section, .portal-nav-divider, .portal-sidebar-footer { display: none; }
+    .portal-nav-link { min-height: 2.75rem; padding: .75rem; font-size: .8rem; }
+}
+
+@media (max-width: 768px) {
+    body.nav-open { overflow: hidden; }
+}
+
+@media (max-width: 480px) {
+    .container { padding-left: 1rem; padding-right: 1rem; }
+    .logo { width: 2.5rem; height: 2.5rem; flex-basis: 2.5rem; }
+    .hero { padding-top: 2rem; }
+    .hero-image-wrapper { display: none; }
+    .popular-searches { line-height: 1.9; }
+    .section-heading-row .text-link, .employer-panel .btn { width: 100%; }
+    .role-card, .card, .value-card, .dashboard-section, .job-details-content,
+    .contact-form-card, .auth-card, .service-block { padding: 1.25rem; }
+    .footer-main { grid-template-columns: 1fr; }
+    .footer-brand { grid-column: auto; }
+    .activity-grid > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+    .opportunity-card-actions { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .modal-backdrop { padding: .75rem; }
+    .modal-header, .modal-body { padding: 1rem; }
+    .jewtread-toast { right: 1rem; bottom: 1rem; left: 1rem; }
+    .portal-metrics-grid { grid-template-columns: 1fr; }
+    .portal-sidebar-nav { grid-template-columns: 1fr; }
+    .custom-table { min-width: 38rem; }
+}
+
