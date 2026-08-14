@@ -3221,3 +3221,49 @@ button, .btn, .tbl-btn, .save-job, .tab-btn, .nav-dropdown-toggle,
     .custom-table { min-width: 38rem; }
 }
 
+/* Inline-layout safety net for the profile, account and employer forms. */
+@media (max-width: 768px) {
+    main [style*="grid-template-columns"] {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 1rem !important;
+    }
+
+    main [style*="display: flex"] {
+        flex-wrap: wrap;
+    }
+
+    main [style*="display: flex"] > input,
+    main [style*="display: flex"] > select,
+    main [style*="display: flex"] > textarea {
+        min-width: 0;
+    }
+
+    .profile-layout-grid > aside,
+    .account-settings-grid > aside {
+        width: 100%;
+    }
+
+    .profile-layout-grid section,
+    .account-settings-section,
+    .portal-form-card {
+        padding: 1.25rem !important;
+    }
+
+    #add-skill-form,
+    #add-skill-form input,
+    #add-skill-form .btn {
+        width: 100%;
+    }
+
+    .cv-attached-card,
+    #cv-attached-card {
+        align-items: flex-start !important;
+        gap: .875rem;
+    }
+
+    .cv-attached-card .btn,
+    #cv-attached-card .btn {
+        width: 100%;
+    }
+}
+
