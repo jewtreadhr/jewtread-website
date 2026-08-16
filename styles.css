@@ -3265,5 +3265,44 @@ button, .btn, .tbl-btn, .save-job, .tab-btn, .nav-dropdown-toggle,
     #cv-attached-card .btn {
         width: 100%;
     }
+
+    .service-directory-section {
+        padding: 2.75rem 0;
+    }
+
+    .service-directory-section .section-heading-row {
+        gap: .75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .service-directory-section .section-side-copy {
+        max-width: none;
+        font-size: .95rem;
+    }
+
+    .service-directory-grid {
+        grid-template-columns: 1fr;
+        gap: .875rem;
+    }
+
+    .service-directory-card {
+        min-height: 0;
+        padding: 1.25rem;
+    }
+
+    .service-directory-card h3 {
+        margin-top: .8rem;
+        font-size: 1.2rem;
+    }
+
+    .service-directory-card p {
+        margin-bottom: 1rem;
+        font-size: .95rem;
+    }
+
+    .service-directory-card > span:last-child {
+        margin-top: .25rem;
+        font-size: .9rem;
+    }
 }
 
