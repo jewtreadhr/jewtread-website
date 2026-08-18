@@ -2329,6 +2329,120 @@ h1, h2, h3, h4 { font-weight: 700; }
     font-size: 0.82rem;
 }
 
+.direct-upload-main {
+    padding: 48px 0 72px;
+}
+
+.direct-upload-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.direct-upload-copy {
+    max-width: 44rem;
+}
+
+.direct-upload-copy h1 {
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.direct-upload-copy p {
+    max-width: 38rem;
+    margin-bottom: 0;
+}
+
+.direct-upload-panel {
+    width: 100%;
+    max-width: 44rem;
+    justify-self: center;
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    padding: 28px;
+}
+
+.direct-upload-panel h2 {
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    color: var(--primary-forest);
+}
+
+.direct-upload-panel form > * + * {
+    margin-top: 16px;
+}
+
+.form-grid-two {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+}
+
+.direct-upload-panel label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.92rem;
+}
+
+.direct-upload-panel input,
+.direct-upload-panel textarea,
+.direct-upload-panel select {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    font-size: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+.direct-upload-panel textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.file-dropzone {
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.cv-attached-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 18px;
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.cv-attached-card strong,
+.cv-attached-card small {
+    display: block;
+    word-break: break-word;
+}
+
+.direct-upload-panel .btn,
+.direct-upload-panel .btn-block {
+    width: 100%;
+}
+
+.direct-upload-panel .btn {
+    min-height: 48px;
+}
+
+.direct-upload-panel .btn-secondary {
+    width: 100%;
+}
+
+.direct-upload-panel .form-feedback {
+    margin-top: 4px;
+}
+
 .file-preview {
     margin-top: 10px;
     font-size: 0.88rem;
@@ -3266,6 +3380,46 @@ button, .btn, .tbl-btn, .save-job, .tab-btn, .nav-dropdown-toggle,
         width: 100%;
     }
 
+    .direct-upload-main {
+        padding: 28px 0 56px;
+    }
+
+    .direct-upload-layout {
+        gap: 18px;
+    }
+
+    .direct-upload-copy h1 {
+        font-size: clamp(2rem, 8vw, 2.6rem);
+    }
+
+    .direct-upload-copy p {
+        font-size: 0.98rem;
+    }
+
+    .direct-upload-panel {
+        padding: 20px;
+    }
+
+    .direct-upload-panel h2 {
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+    }
+
+    .form-grid-two {
+        grid-template-columns: 1fr;
+    }
+
+    .file-dropzone {
+        min-height: 160px;
+        padding: 20px;
+    }
+
+    .direct-upload-panel .btn,
+    .direct-upload-panel .btn-secondary,
+    .direct-upload-panel .btn-block {
+        width: 100%;
+    }
+
     .service-directory-section {
         padding: 2.75rem 0;
     }
@@ -3303,6 +3457,35 @@ button, .btn, .tbl-btn, .save-job, .tab-btn, .nav-dropdown-toggle,
     .service-directory-card > span:last-child {
         margin-top: .25rem;
         font-size: .9rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .direct-upload-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .form-grid-two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .direct-upload-panel {
+        padding: 32px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .direct-upload-main {
+        padding: 64px 0 88px;
+    }
+
+    .direct-upload-layout {
+        justify-items: center;
+    }
+
+    .direct-upload-copy,
+    .direct-upload-panel {
+        width: min(100%, 44rem);
     }
 }
 

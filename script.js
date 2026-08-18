@@ -891,7 +891,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (profileCvFile.files.length > 0) {
                 const name = profileCvFile.files[0].name;
                 if (cvFileName) cvFileName.textContent = name;
-                if (cvAttachedCard) cvAttachedCard.style.display = 'flex';
+                if (cvAttachedCard) cvAttachedCard.hidden = false;
                 showToast('New CV document attached!');
             }
         });
@@ -899,9 +899,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (removeCvBtn && cvAttachedCard) {
         removeCvBtn.addEventListener('click', () => {
-            cvAttachedCard.style.display = 'none';
+            cvAttachedCard.hidden = true;
             if (profileCvFile) profileCvFile.value = '';
             showToast('CV document removed.');
+        });
+    }
+
+    const directCvUploadForm = document.getElementById('direct-cv-upload-form');
+    const directCvFeedback = document.getElementById('direct-cv-feedback');
+
+    if (directCvUploadForm) {
+        directCvUploadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (directCvFeedback) {
+                directCvFeedback.className = 'form-feedback success';
+                directCvFeedback.innerHTML = `
+                    <div class="success-header">
+                        <span class="success-icon">&#10003;</span>
+                        <strong>CV uploaded successfully.</strong>
+                    </div>
+                    <p>Thanks. Our team will review your details and contact you if there's a good match.</p>
+                `;
+            }
+
+            showToast('CV uploaded successfully!');
+            directCvUploadForm.reset();
+            if (cvAttachedCard) cvAttachedCard.hidden = true;
+        });
+    }
+
+    if (profileCvDropzone && profileCvFile) {
+        profileCvDropzone.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                profileCvFile.click();
+            }
         });
     }
 
@@ -1032,6 +1065,3 @@ document.addEventListener('DOMContentLoaded', () => {
         switchAccountTab('sec-password');
     }
 });
-
-
-
