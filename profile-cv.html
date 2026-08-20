@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload CV | Jewtread HR</title>
-    <meta name="description" content="Upload your CV directly to Jewtread HR so our recruitment specialists can match you with suitable opportunities.">
+    <title>Upload Your CV | Jewtread HR</title>
+    <meta name="description" content="Submit your CV to Jewtread HR for domestic staffing and corporate job opportunities across Nigeria.">
     <link rel="icon" type="image/png" href="jewtread-logo.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 </head>
-<body class="profile-page">
+<body>
 
     <header class="navbar">
         <div class="container nav-container">
@@ -20,8 +20,8 @@
                 <a href="services.html">Services</a>
                 <a href="about.html">About Us</a>
                 <a href="contact.html">Contact Us</a>
-                <a href="profile-cv.html" class="nav-link-signin active">Upload CV</a>
-                <a href="contact.html#employer-enquiry" class="btn btn-secondary">Find an Employer</a>
+                <a href="hire-a-professional.html" class="nav-link-signin">Hire a Professional</a>
+                <a href="profile-cv.html" class="btn btn-secondary active">Upload CV</a>
             </nav>
             <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
                 <span class="bar"></span>
@@ -39,34 +39,49 @@
                 <p>Send your details directly to Jewtread HR. Our recruitment team will review your CV and contact you when a matching domestic or corporate opportunity is available.</p>
             </div>
 
-            <section class="direct-upload-panel" aria-labelledby="cv-upload-heading">
-                <h2 id="cv-upload-heading">Candidate details</h2>
-                <form id="direct-cv-upload-form">
+            <section class="direct-upload-panel">
+                <h2>Candidate Details & CV Attachment</h2>
+                <form id="direct-cv-upload-form" novalidate>
                     <div class="form-grid-two">
-                        <div>
-                            <label for="prof-fullname">Full Name *</label>
-                            <input type="text" id="prof-fullname" name="name" autocomplete="name" required>
+                        <div class="form-group">
+                            <label for="direct-full-name">Full name</label>
+                            <input id="direct-full-name" type="text" required placeholder="e.g. Samuel Okafor">
                         </div>
-                        <div>
-                            <label for="prof-email">Email Address *</label>
-                            <input type="email" id="prof-email" name="email" autocomplete="email" required>
+                        <div class="form-group">
+                            <label for="direct-email">Email address</label>
+                            <input id="direct-email" type="email" required placeholder="e.g. samuel@example.com">
                         </div>
-                    </div>
-                    <div>
-                        <label for="prof-phone">Phone Number *</label>
-                        <input type="tel" id="prof-phone" name="phone" autocomplete="tel" required>
                     </div>
 
-                    <div class="file-dropzone" id="profile-cv-dropzone" role="button" tabindex="0" aria-label="Upload CV file">
-                        <svg class="dropzone-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                        <p>Drag and drop your CV here, or <strong>click to browse files</strong></p>
-                        <small>Supported formats: PDF or DOCX</small>
-                        <input type="file" id="profile-cv-file" name="cv" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
+                    <div class="form-grid-two">
+                        <div class="form-group">
+                            <label for="direct-phone">Phone number</label>
+                            <input id="direct-phone" type="tel" required placeholder="e.g. +234 801 234 5678">
+                        </div>
+                        <div class="form-group">
+                            <label for="direct-role-interest">Role interest</label>
+                            <input id="direct-role-interest" type="text" placeholder="e.g. Chef, Executive PA, Driver">
+                        </div>
                     </div>
 
-                    <div id="cv-attached-card" class="cv-attached-card" hidden>
+                    <div class="form-group">
+                        <label for="direct-location">Location / State</label>
+                        <input id="direct-location" type="text" placeholder="e.g. Lagos, Abuja, Port Harcourt">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profile-cv-file">CV document (PDF, DOC, DOCX up to 5MB)</label>
+                        <div class="file-dropzone" id="profile-cv-dropzone" tabindex="0" role="button" aria-label="Upload CV file">
+                            <svg class="dropzone-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                            <p><strong>Click to browse</strong> or drop your CV file here</p>
+                            <small>Supported formats: PDF, DOC, DOCX (Max 5MB)</small>
+                            <input type="file" id="profile-cv-file" accept=".pdf,.doc,.docx" required>
+                        </div>
+                    </div>
+
+                    <div class="cv-attached-card" id="cv-attached-card" hidden>
                         <div>
-                            <strong id="cv-file-name">No file selected</strong>
+                            <strong id="cv-file-name">cv-document.pdf</strong>
                             <small id="cv-file-meta">Ready to submit</small>
                         </div>
                         <button type="button" class="btn btn-secondary" id="remove-cv-btn">Remove CV</button>
@@ -82,8 +97,8 @@
     <footer class="footer">
         <div class="container footer-main">
             <div class="footer-brand"><a href="index.html" class="footer-logo">Jewtread<span>HR</span></a><p>Connecting dependable professionals with households and businesses across Nigeria.</p></div>
-            <div class="footer-links"><h3>Job seekers</h3><a href="profile-cv.html">Upload CV</a><a href="job-opportunities.html">Browse opportunities</a></div>
-            <div class="footer-links"><h3>Employers</h3><a href="contact.html#employer-enquiry">Find an Employer</a><a href="services.html#management">Staff management</a></div>
+            <div class="footer-links"><h3>Job seekers</h3><a href="job-opportunities.html">Browse opportunities</a><a href="profile-cv.html">Upload CV</a><a href="job-seeker-dashboard.html">My dashboard</a></div>
+            <div class="footer-links"><h3>Employers</h3><a href="hire-a-professional.html">Hire a professional</a><a href="services.html#corporate">Find talent</a><a href="services.html#management">Staff management</a><a href="contact.html">Contact our team</a></div>
             <div class="footer-links"><h3>Jewtread HR</h3><a href="about.html">About us</a><a href="services.html">Our services</a><a href="contact.html">Contact us</a></div>
         </div>
         <div class="container footer-bottom">

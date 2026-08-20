@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             setTimeout(() => {
-                const targetDashboard = selectedRole === 'employer' ? 'employer-dashboard.html' : 'job-seeker-dashboard.html';
+                const targetDashboard = selectedRole === 'employer' ? 'hire-a-professional.html' : 'job-seeker-dashboard.html';
                 if (signupFeedback) {
                     signupFeedback.className = 'form-feedback success';
                     signupFeedback.innerHTML = `
@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="success-icon">✓</span>
                             <strong>Account Created Successfully!</strong>
                         </div>
-                        <p>Welcome to Jewtread HR. <a href="${targetDashboard}" style="color: var(--cta-emerald); font-weight: 600;">Continue to your dashboard</a></p>
+                        <p>Welcome to Jewtread HR. <a href="${targetDashboard}" style="color: var(--cta-emerald); font-weight: 600;">Continue to ${selectedRole === 'employer' ? 'hire talent' : 'your dashboard'}</a></p>
                     `;
                 }
                 setTimeout(() => { window.location.href = targetDashboard; }, 1000);
@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const loginFeedback = document.getElementById('login-feedback');
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const emailInput = document.getElementById('email');
+            const emailInput = document.getElementById('login-email') || document.getElementById('email');
             const emailVal = emailInput ? emailInput.value.toLowerCase() : '';
             const role = emailVal.includes('employer') || emailVal.includes('company') || emailVal.includes('hr') ? 'employer' : 'seeker';
             
@@ -397,11 +397,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (loginFeedback) {
                 loginFeedback.className = 'form-feedback success';
-                loginFeedback.textContent = `Sign-in successful. Redirecting to your ${role === 'employer' ? 'employer' : 'job seeker'} dashboard...`;
+                loginFeedback.textContent = `Sign-in successful. Redirecting to ${role === 'employer' ? 'the hiring portal' : 'your job seeker dashboard'}...`;
             }
 
             setTimeout(() => {
-                const target = role === 'employer' ? 'employer-dashboard.html' : 'job-seeker-dashboard.html';
+                const target = role === 'employer' ? 'hire-a-professional.html' : 'job-seeker-dashboard.html';
                 window.location.href = target;
             }, 800);
         });
@@ -1063,5 +1063,215 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Default to first section
         switchAccountTab('sec-password');
+    }
+
+    // ==========================================
+    // 15. Hire a Professional Form & Dynamic Suggestions
+    // ==========================================
+    const hireForm = document.getElementById('hire-professional-form');
+    const roleSuggestionsContainer = document.getElementById('role-suggestions');
+    const roleInput = document.getElementById('roleNeeded');
+    const hireFeedback = document.getElementById('hire-form-feedback');
+    const hireSubmitBtn = document.getElementById('hire-submit-btn');
+    const categoryRadios = document.querySelectorAll('input[name="staffCategory"]');
+
+    const rolePresets = {
+        'Domestic Staffing': [
+            { label: 'Household Chef', role: 'Household Cook / Chef' },
+            { label: 'Nanny', role: 'Nanny / Governess' },
+            { label: 'Chauffeur', role: 'Professional Chauffeur / Driver' },
+            { label: 'Housekeeper', role: 'Experienced Housekeeper / Cleaner' },
+            { label: 'Caregiver', role: 'Elderly Caregiver / Companion' },
+            { label: 'Estate Manager', role: 'Estate Supervisor / Facility Manager' }
+        ],
+        'Corporate Recruitment': [
+            { label: 'Executive PA', role: 'Executive Personal Assistant' },
+            { label: 'Operations Manager', role: 'Operations & Logistics Manager' },
+            { label: 'Finance / Accountant', role: 'Accountant / Financial Officer' },
+            { label: 'HR Officer', role: 'Human Resources & Recruitment Officer' },
+            { label: 'Sales & Marketing', role: 'Sales & Business Development Lead' },
+            { label: 'Front Desk', role: 'Front Desk & Administrative Support' }
+        ],
+        'Workforce Outsourcing': [
+            { label: 'Shift Support', role: 'Shift Operations Support' },
+            { label: 'Cleaning Crew', role: 'Facility Cleaners & Janitorial Staff' },
+            { label: 'Security Team', role: 'Contracted Security Personnel' },
+            { label: 'Logistics / Drivers', role: 'Logistics Drivers & Fleet Staff' },
+            { label: 'Hospitality Staff', role: 'Hospitality & Event Crew' },
+            { label: 'Warehouse Team', role: 'Warehouse & Inventory Assistants' }
+        ]
+    };
+
+    function updateRoleSuggestions(category) {
+        if (!roleSuggestionsContainer) return;
+        const suggestions = rolePresets[category] || rolePresets['Domestic Staffing'];
+        roleSuggestionsContainer.innerHTML = '';
+        suggestions.forEach(item => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'suggestion-chip';
+            btn.setAttribute('data-role', item.role);
+            btn.textContent = item.label;
+            roleSuggestionsContainer.appendChild(btn);
+        });
+        bindSuggestionChips();
+    }
+
+    function bindSuggestionChips() {
+        const chips = document.querySelectorAll('.suggestion-chip');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const roleValue = chip.getAttribute('data-role');
+                if (roleInput && roleValue) {
+                    roleInput.value = roleValue;
+                    roleInput.focus();
+                    chips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                }
+            });
+        });
+    }
+
+    if (categoryRadios.length > 0) {
+        categoryRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    updateRoleSuggestions(e.target.value);
+                }
+            });
+        });
+    }
+
+    bindSuggestionChips();
+
+    if (hireForm) {
+        hireForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const role = document.getElementById('roleNeeded')?.value.trim();
+            const clientName = document.getElementById('clientName')?.value.trim();
+            const clientEmail = document.getElementById('clientEmail')?.value.trim();
+            const clientPhone = document.getElementById('clientPhone')?.value.trim();
+            const location = document.getElementById('placementLocation')?.value;
+            const timeline = document.getElementById('targetStartDate')?.value;
+            const arrangement = document.getElementById('workArrangement')?.value;
+            const numHires = document.getElementById('numHires')?.value;
+            const orgName = document.getElementById('organizationName')?.value.trim();
+            const details = document.getElementById('roleDetails')?.value.trim();
+            const selectedCat = document.querySelector('input[name="staffCategory"]:checked')?.value || 'Domestic Staffing';
+
+            if (!role || !clientName || !clientEmail || !clientPhone || !location || !timeline || !arrangement || !numHires) {
+                if (hireFeedback) {
+                    hireFeedback.className = 'form-feedback error';
+                    hireFeedback.innerHTML = '<strong>Please complete all required fields (*).</strong>';
+                }
+                return;
+            }
+
+            if (hireSubmitBtn) {
+                hireSubmitBtn.disabled = true;
+                const btnTextEl = hireSubmitBtn.querySelector('.btn-text');
+                if (btnTextEl) btnTextEl.textContent = 'Processing Staffing Request...';
+            }
+
+            setTimeout(() => {
+                // Store staffing request in localStorage
+                try {
+                    const requests = JSON.parse(localStorage.getItem('jewtread_hiring_requests')) || [];
+                    const newRequest = {
+                        id: 'req-' + Date.now(),
+                        category: selectedCat,
+                        role,
+                        numHires,
+                        arrangement,
+                        location,
+                        timeline,
+                        clientName,
+                        orgName: orgName || 'Private Household',
+                        clientEmail,
+                        clientPhone,
+                        details,
+                        submittedAt: new Date().toISOString()
+                    };
+                    requests.unshift(newRequest);
+                    localStorage.setItem('jewtread_hiring_requests', JSON.stringify(requests));
+                } catch (err) {}
+
+                if (hireFeedback) {
+                    hireFeedback.className = 'form-feedback success';
+                    hireFeedback.innerHTML = `
+                        <div class="success-header">
+                            <span class="success-icon">&#10003;</span>
+                            <strong>Staffing Request Received!</strong>
+                        </div>
+                        <p>Thank you, <strong>${clientName}</strong>. We have logged your request for <strong>${role} (${selectedCat})</strong> in <strong>${location}</strong>.</p>
+                        <p style="margin-top: 8px; font-size: 0.92rem;">A senior Jewtread HR placement specialist will review your requirements and reach out at <strong>${clientPhone}</strong> / <strong>${clientEmail}</strong> within 24 hours.</p>
+                    `;
+                }
+
+                hireForm.reset();
+                if (hireSubmitBtn) {
+                    hireSubmitBtn.disabled = false;
+                    const btnTextEl = hireSubmitBtn.querySelector('.btn-text');
+                    if (btnTextEl) btnTextEl.textContent = 'Submit Staffing Request';
+                }
+
+                showToast('Staffing request submitted successfully!');
+                hireFeedback?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1200);
+        });
+    }
+
+    // ==========================================
+    // 16. Services Page Interactive Tabs & Deep Links
+    // ==========================================
+    const serviceTabBtnsV2 = document.querySelectorAll('.services-tabs .tab-btn');
+    const serviceBlocksV2 = document.querySelectorAll('.services-detail-section .service-block');
+
+    function activateServiceTab(targetId) {
+        if (!targetId || serviceBlocksV2.length === 0) return;
+
+        serviceBlocksV2.forEach(block => {
+            block.classList.remove('active');
+            if (block.id === targetId) {
+                block.classList.add('active');
+            }
+        });
+
+        serviceTabBtnsV2.forEach(btn => {
+            const isMatch = btn.getAttribute('data-target') === targetId;
+            btn.classList.toggle('active', isMatch);
+            btn.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+        });
+    }
+
+    if (serviceTabBtnsV2.length > 0) {
+        serviceTabBtnsV2.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-target');
+                activateServiceTab(target);
+            });
+        });
+
+        // Check hash link on page load (e.g. #domestic, #corporate, #management)
+        const initialHash = window.location.hash.replace('#', '');
+        if (initialHash && ['domestic', 'corporate', 'management'].includes(initialHash)) {
+            activateServiceTab(initialHash);
+            const targetEl = document.getElementById(initialHash);
+            if (targetEl) {
+                setTimeout(() => targetEl.scrollIntoView({ behavior: 'smooth' }), 200);
+            }
+        }
+
+        // Service directory cards anchor click handling
+        document.querySelectorAll('.service-directory-card[href^="#"]').forEach(card => {
+            card.addEventListener('click', (e) => {
+                const href = card.getAttribute('href');
+                const targetId = href.replace('#', '');
+                if (targetId && ['domestic', 'corporate', 'management'].includes(targetId)) {
+                    activateServiceTab(targetId);
+                }
+            });
+        });
     }
 });
