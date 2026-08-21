@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard | Jewtread HR</title>
+    <link rel="icon" type="image/png" href="{% static 'images/jewtread-logo.png' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="{% url 'core:index' %}" class="logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;">Jewtread<span>HR</span></a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="{% url 'users:employer_dashboard' %}" class="active">My dashboard</a>
+                <a href="{% url 'services:hire' %}">Hire a Professional</a>
+                <div class="nav-dropdown" id="profile-dropdown">
+                    <button type="button" class="nav-dropdown-toggle" id="profile-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+                        <span class="avatar-sm">{{ user.first_name|first|default:''|upper }}{{ user.last_name|first|default:''|upper }}</span>
+                        <span>Profile</span>
+                    </button>
+                    <div class="nav-dropdown-menu" id="profile-dropdown-menu">
+                        <form action="{% url 'users:logout' %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="dropdown-item logout-item" style="border:none; background:none; width:100%; text-align:left; cursor:pointer;">
+                                Sign out
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="container">
+            <section class="dashboard-welcome">
+                <div>
+                    <span class="section-kicker">Employer Dashboard</span>
+                    <h1>Welcome back, {{ user.employer_profile.company_name|default:user.first_name }}.</h1>
+                </div>
+            </section>
+
+            <section class="dashboard-grid">
+                <aside class="dashboard-profile" id="profile">
+                    <div class="profile-avatar">{{ user.first_name|first|default:''|upper }}{{ user.last_name|first|default:''|upper }}</div>
+                    <h2>{{ user.get_full_name }}</h2>
+                    <p>{{ user.email }}</p>
+                </aside>
+
+                <div class="dashboard-content">
+                    <!-- Activity Stats Section -->
+                    <section class="dashboard-section">
+                        <div class="section-heading-row">
+                            <div>
+                                <span class="section-kicker">Your activity</span>
+                                <h2>Job Postings & Applications</h2>
+                            </div>
+                        </div>
+                        <div class="activity-grid">
+                            <div>
+                                <strong>{{ stats.active_jobs }}</strong>
+                                <span>Active Jobs</span>
+                            </div>
+                            <div>
+                                <strong>{{ stats.total_applications }}</strong>
+                                <span>Total Applications</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Jobs List -->
+                    <section class="dashboard-section">
+                        <div class="section-heading-row">
+                            <h2>Your Job Postings</h2>
+                        </div>
+                        <div class="dashboard-role-list">
+                            {% for job in jobs %}
+                                <article class="opportunity-card">
+                                    <div class="opportunity-card-main">
+                                        <h3>{{ job.title }}</h3>
+                                        <p>{{ job.get_status_display }}</p>
+                                    </div>
+                                    <div class="opportunity-card-actions">
+                                        <a href="{% url 'jobs:detail' job.id %}" class="btn btn-primary">View Job</a>
+                                    </div>
+                                </article>
+                            {% empty %}
+                                <p style="color: var(--text-muted); font-size: 0.95rem;">You haven't posted any jobs yet.</p>
+                            {% endfor %}
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

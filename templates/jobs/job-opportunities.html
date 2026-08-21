@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Opportunities | Jewtread HR</title>
+    <meta name="description" content="Explore current domestic staffing, corporate recruitment, and staff management opportunities across Nigeria with Jewtread HR.">
+    <link rel="icon" type="image/png" href="{% static 'images/jewtread-logo.png' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="opportunities-page">
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="{% url 'core:index' %}" class="logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;">Jewtread<span>HR</span></a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="{% url 'users:jobseeker_dashboard' %}">My dashboard</a>
+                <a href="{% url 'jobs:list' %}" class="active">Explore roles</a>
+                <a href="{% url 'core:about' %}">About us</a>
+                <div class="nav-dropdown" id="profile-dropdown">
+                    <button type="button" class="nav-dropdown-toggle" id="profile-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+                        <span class="avatar-sm">JS</span>
+                        <span>Profile</span>
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu" id="profile-dropdown-menu">
+                        <a href="{% url 'users:profile' %}" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 4-4H8a4 4 0 0 4-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            Profile and CV
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                            Saved jobs
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                            Jobs applied for
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                            Alerts
+                        </a>
+                        <a href="job-seeker-dashboard.html#profile" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                            Account
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="{% url 'core:index' %}" class="dropdown-item logout-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                            Sign out
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="opportunities-hero">
+            <div class="container">
+                <span class="section-kicker">Find your next opportunity</span>
+                <h1>Explore roles that fit your strengths.</h1>
+                <p>Search current opportunities across domestic staffing, corporate recruitment, and workforce support.</p>
+                <form id="opportunity-search" class="opportunity-search">
+                    <div>
+                        <label for="opportunity-keyword">What</label>
+                        <input id="opportunity-keyword" type="search" placeholder="Job title or keyword">
+                    </div>
+                    <div>
+                        <label for="opportunity-location">Where</label>
+                        <input id="opportunity-location" type="text" placeholder="City or state">
+                    </div>
+                    <div>
+                        <label for="opportunity-type">Job type</label>
+                        <select id="opportunity-type">
+                            <option value="">All types</option>
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Contract">Contract</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Search roles</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="opportunities-content">
+            <div class="container opportunities-layout">
+                <!-- Filter Sidebar -->
+                <aside class="filter-panel">
+                    <div class="filter-heading">
+                        <h2>Filter roles</h2>
+                        <button type="button" id="clear-filters-btn">Clear all</button>
+                    </div>
+                    <fieldset>
+                        <legend>Category</legend>
+                        <label><input type="checkbox" name="filter-category" value="Domestic staffing"> Domestic staffing</label>
+                        <label><input type="checkbox" name="filter-category" value="Corporate recruitment"> Corporate recruitment</label>
+                        <label><input type="checkbox" name="filter-category" value="Staff management"> Staff management</label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Work type</legend>
+                        <label><input type="checkbox" name="filter-type" value="Full-time"> Full-time</label>
+                        <label><input type="checkbox" name="filter-type" value="Part-time"> Part-time</label>
+                        <label><input type="checkbox" name="filter-type" value="Contract"> Contract</label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Location</legend>
+                        <label><input type="checkbox" name="filter-location" value="Lagos"> Lagos</label>
+                        <label><input type="checkbox" name="filter-location" value="Abuja"> Abuja</label>
+                        <label><input type="checkbox" name="filter-location" value="Port Harcourt"> Port Harcourt</label>
+                    </fieldset>
+                </aside>
+
+                <!-- Results Section -->
+                <div class="opportunities-results">
+                    <div class="results-heading">
+                        <div>
+                            <span class="section-kicker">Available now</span>
+                            <h2 id="results-title">Recommended opportunities</h2>
+                            <p id="results-count-text" aria-live="polite">10 roles currently available</p>
+                        </div>
+                        <label class="sort-control" for="sort-roles">Sort by 
+                            <select id="sort-roles">
+                                <option value="recent">Most recent</option>
+                                <option value="title">Job title (A-Z)</option>
+                                <option value="location">Location</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <!-- Role Card List -->
+                    <div class="opportunity-list" id="opportunity-list">
+                        {% for job in jobs %}
+                        <article class="opportunity-card" data-job-id="{{ job.id }}" data-title="{{ job.title }}" data-category="{{ job.category.name|default:'Uncategorized' }}" data-type="{{ job.get_type_display|default:'Full-time' }}">
+                            <div class="opportunity-card-main">
+                                <span class="role-type">{{ job.get_type_display|default:'Full-time' }}</span>
+                                <h3>{{ job.title }}</h3>
+                                <p class="opportunity-employer">{{ job.employer.employer_profile.company_name }}</p>
+                                <div class="opportunity-meta">
+                                    <span>{{ job.category.name|default:'Uncategorized' }}</span>
+                                    <span>{{ job.created_at|timesince }} ago</span>
+                                </div>
+                                <p class="opportunity-description">{{ job.description|truncatewords:20 }}</p>
+                            </div>
+                            <div class="opportunity-card-actions">
+                                <button class="save-job" type="button" data-job-id="{{ job.id }}">Save role</button>
+                                <button class="btn btn-secondary quick-apply-btn" type="button" data-job-id="{{ job.id }}" data-job-title="{{ job.title }}">Quick Apply</button>
+                                <a href="{% url 'jobs:detail' job.id %}" class="btn btn-primary">View role</a>
+                            </div>
+                        </article>
+                        {% empty %}
+                        <p>No job opportunities available right now. Please check back later.</p>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Quick Apply Modal -->
+    <div class="modal-backdrop" id="quick-apply-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="quick-apply-role-title">Quick Apply for Vacancy</h3>
+                <button type="button" class="modal-close-btn" id="close-quick-apply-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="quick-apply-form">
+                    <input type="hidden" id="quick-apply-job-id">
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label for="qa-name" style="display:block; font-weight:600; margin-bottom:6px;">Full Name *</label>
+                        <input type="text" id="qa-name" required placeholder="Enter your full name" style="width:100%; padding:12px; border:1px solid var(--border-color); border-radius:6px;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label for="qa-email" style="display:block; font-weight:600; margin-bottom:6px;">Email Address *</label>
+                        <input type="email" id="qa-email" required placeholder="name@example.com" style="width:100%; padding:12px; border:1px solid var(--border-color); border-radius:6px;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label for="qa-phone" style="display:block; font-weight:600; margin-bottom:6px;">Phone Number *</label>
+                        <input type="tel" id="qa-phone" required placeholder="+234..." style="width:100%; padding:12px; border:1px solid var(--border-color); border-radius:6px;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="display:block; font-weight:600; margin-bottom:6px;">Upload Resume / CV *</label>
+                        <div class="file-dropzone" id="qa-dropzone">
+                            <svg class="dropzone-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                            <p>Drag and drop your resume here, or <strong>browse file</strong></p>
+                            <small>PDF, DOCX, or RTF (Max 5MB)</small>
+                            <input type="file" id="qa-resume-file" accept=".pdf,.doc,.docx">
+                            <div class="file-preview" id="qa-file-preview"></div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container footer-main">
+            <div class="footer-brand">
+                <a href="{% url 'core:index' %}" class="footer-logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;">Jewtread<span>HR</span></a>
+                <p>Connecting dependable professionals with households and businesses across Nigeria.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Job seekers</h3>
+                <a href="{% url 'users:jobseeker_dashboard' %}">My dashboard</a>
+                <a href="{% url 'jobs:list' %}">Explore roles</a>
+                <a href="{% url 'core:contact' %}">Get support</a>
+            </div>
+            <div class="footer-links">
+                <h3>Employers</h3>
+                <a href="{% url 'services:hire' %}">Hire a professional</a>
+                <a href="{% url 'core:services' %}#corporate">Find talent</a>
+                <a href="{% url 'core:contact' %}">Contact our team</a>
+            </div>
+            <div class="footer-links">
+                <h3>Jewtread HR</h3>
+                <a href="{% url 'core:about' %}">About us</a>
+                <a href="{% url 'core:services' %}">Our services</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Jewtread HR. All Rights Reserved.</p>
+            <p>Building Better Homes and Stronger Businesses.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

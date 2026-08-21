@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Seeker Dashboard | Jewtread HR</title>
+    <meta name="description" content="Manage your candidate profile, view saved roles, and track job applications with Jewtread HR.">
+    <link rel="icon" type="image/png" href="{% static 'images/jewtread-logo.png' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="{% url 'core:index' %}" class="logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;">Jewtread<span>HR</span></a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="{% url 'users:jobseeker_dashboard' %}" class="active">My dashboard</a>
+                <a href="{% url 'jobs:list' %}">Explore roles</a>
+                <a href="#">My applications</a>
+                <div class="nav-dropdown" id="profile-dropdown">
+                    <button type="button" class="nav-dropdown-toggle" id="profile-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+                        <span class="avatar-sm">JS</span>
+                        <span>Profile</span>
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu" id="profile-dropdown-menu">
+                        <a href="{% url 'users:profile' %}" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 4-4H8a4 4 0 0 4-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            Profile and CV
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                            Saved jobs
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                            Jobs applied for
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                            Alerts
+                        </a>
+                        <a href="#profile" class="dropdown-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                            Account
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="{% url 'core:index' %}" class="dropdown-item logout-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                            Sign out
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="container">
+            <section class="dashboard-welcome">
+                <div>
+                    <span class="section-kicker">Your job search</span>
+                    <h1>Welcome back, {{ user.first_name|default:user.username }}.</h1>
+                    <p>Keep your profile current to receive more relevant domestic and corporate opportunities.</p>
+                </div>
+                <a href="#profile" class="btn btn-primary">Complete my profile</a>
+            </section>
+
+            <section class="dashboard-grid">
+                <aside class="dashboard-profile" id="profile">
+                    <div class="profile-avatar">{{ user.first_name|first|default:''|upper }}{{ user.last_name|first|default:''|upper }}</div>
+                    <h2>Your profile</h2>
+                    <p>Build a stronger profile to help employers understand your experience.</p>
+                    <div class="profile-progress">
+                        <div class="progress-label"><span>Profile completion</span><strong>60%</strong></div>
+                        <div class="progress-track"><span style="width: 60%;"></span></div>
+                    </div>
+                    <ul class="profile-checklist">
+                        <li class="complete">Basic details added</li>
+                        <li class="complete">Preferred role selected</li>
+                        <li>Add work experience</li>
+                        <li>Upload your CV</li>
+                    </ul>
+                    <a href="#" class="text-link">Edit profile &rarr;</a>
+                </aside>
+
+                <div class="dashboard-content">
+                    <!-- Activity Stats Section -->
+                    <section class="dashboard-section">
+                        <div class="section-heading-row">
+                            <div>
+                                <span class="section-kicker">Your activity</span>
+                                <h2>Applications and saved roles</h2>
+                            </div>
+                            <a href="#" class="text-link">View all applications &rarr;</a>
+                        </div>
+                        <div class="activity-grid">
+                            <div>
+                                <strong id="stat-applications-count">{{ applications.count }}</strong>
+                                <span>Applications</span>
+                                <p>Active submissions being reviewed by employers.</p>
+                            </div>
+                            <div>
+                                <strong id="stat-saved-count">0</strong>
+                                <span>Saved roles</span>
+                                <p>Bookmarked vacancies saved for later.</p>
+                            </div>
+                            <div>
+                                <strong>1</strong>
+                                <span>Messages</span>
+                                <p>System confirmation from recruitment specialist.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Saved Roles Section -->
+                    <section class="dashboard-section">
+                        <div class="section-heading-row">
+                            <div>
+                                <span class="section-kicker">Saved for later</span>
+                                <h2>Bookmarked opportunities</h2>
+                            </div>
+                            <a href="{% url 'jobs:list' %}" class="text-link">Explore more roles &rarr;</a>
+                        </div>
+                        <div class="dashboard-role-list" id="dashboard-saved-roles-container">
+                            <p style="color: var(--text-muted); font-size: 0.95rem;">You haven't saved any roles yet. Click <strong>"Save role"</strong> on any vacancy in <a href="{% url 'jobs:list' %}" style="color: var(--cta-emerald);">Explore roles</a> to bookmark it here.</p>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-main">
+            <div class="footer-brand">
+                <a href="{% url 'core:index' %}" class="footer-logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;">Jewtread<span>HR</span></a>
+                <p>Connecting dependable professionals with households and businesses across Nigeria.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Job seekers</h3>
+                <a href="{% url 'users:jobseeker_dashboard' %}">My dashboard</a>
+                <a href="{% url 'jobs:list' %}">Explore roles</a>
+                <a href="#">My applications</a>
+            </div>
+            <div class="footer-links">
+                <h3>Employers</h3>
+                <a href="{% url 'services:hire' %}">Hire a professional</a>
+                <a href="{% url 'core:services' %}#corporate">Find talent</a>
+                <a href="{% url 'core:contact' %}">Contact our team</a>
+            </div>
+            <div class="footer-links">
+                <h3>Jewtread HR</h3>
+                <a href="{% url 'core:about' %}">About us</a>
+                <a href="{% url 'core:services' %}">Our services</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Jewtread HR. All Rights Reserved.</p>
+            <p>Building Better Homes and Stronger Businesses.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
