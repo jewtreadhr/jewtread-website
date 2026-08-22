@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Login — Jewtread HR Portal</title>
+    <link rel="icon" type="image/png" href="{% static 'images/jewtread-logo.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'portal/css/portal.css' %}">
+</head>
+<body>
+<div class="portal-login-page">
+    <div class="portal-login-card">
+        <div class="portal-login-brand">
+            <img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR">
+            <h1>Employer Portal</h1>
+            <p>Sign in to manage your job postings and applicants.</p>
+        </div>
+
+        {% if messages %}
+        <div class="portal-messages">
+            {% for message in messages %}
+            <div class="portal-alert portal-alert-{{ message.tags|default:'error' }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="POST" action="{% url 'portal:login' %}">
+            {% csrf_token %}
+            <div class="portal-form-group">
+                <label class="portal-form-label" for="username">Username</label>
+                <input type="text" id="username" name="username" class="portal-form-input" placeholder="Enter your username" required autofocus>
+            </div>
+            <div class="portal-form-group">
+                <label class="portal-form-label" for="password">Password</label>
+                <input type="password" id="password" name="password" class="portal-form-input" placeholder="Enter your password" required>
+            </div>
+            <div class="portal-form-group" style="padding-top: 8px;">
+                <button type="submit" class="portal-btn portal-btn-primary">Sign In to Portal</button>
+            </div>
+        </form>
+
+        <p style="text-align:center; font-size:0.85rem; color:var(--portal-text-muted); margin-top:24px;">
+            <a href="{% url 'core:index' %}" style="color:var(--portal-primary-light); text-decoration:none; font-weight:600;">&larr; Back to website</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>

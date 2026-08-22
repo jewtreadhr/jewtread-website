@@ -1,7 +1,10 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from .models import User, JobSeekerProfile, EmployerProfile
+from .models import User, TalentPoolCandidate
 
-admin.site.register(User, UserAdmin)
-admin.site.register(JobSeekerProfile)
-admin.site.register(EmployerProfile)
+admin.site.register(User)
+
+@admin.register(TalentPoolCandidate)
+class TalentPoolCandidateAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'email', 'phone', 'created_at', 'is_reviewed')
+    list_filter = ('is_reviewed',)
+    search_fields = ('full_name', 'email', 'skills')

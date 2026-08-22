@@ -1,0 +1,69 @@
+{% extends "portal/base.html" %}
+
+{% block title %}Talent Pool (CVs){% endblock %}
+{% block page_title %}Talent Pool (CVs){% endblock %}
+
+{% block content %}
+<div class="portal-card">
+    <div class="portal-card-header" style="flex-wrap: wrap; gap: 16px;">
+        <h2 class="portal-card-title">All Uploaded CVs</h2>
+        
+        <div class="portal-header-actions" style="display: flex; gap: 12px; align-items: center;">
+            <form method="get" class="portal-form-inline">
+                <input type="text" name="q" value="{{ search_query }}" class="portal-form-input" placeholder="Search names or skills..." style="width: 250px;">
+                <select name="status" class="portal-form-select" onchange="this.form.submit()">
+                    <option value="">All Statuses</option>
+                    <option value="PENDING" {% if status_filter == 'PENDING' %}selected{% endif %}>Pending</option>
+                    <option value="REVIEWED" {% if status_filter == 'REVIEWED' %}selected{% endif %}>Reviewed</option>
+                </select>
+                <button type="submit" class="portal-btn portal-btn-secondary portal-btn-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    {% if cvs %}
+    <div class="portal-table-wrap">
+        <table class="portal-table">
+            <thead>
+                <tr>
+                    <th>Candidate Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Skills</th>
+                    <th>Status</th>
+                    <th>Date Uploaded</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cv in cvs %}
+                <tr>
+                    <td><strong>{{ cv.full_name }}</strong></td>
+                    <td>{{ cv.email }}</td>
+                    <td>{{ cv.phone }}</td>
+                    <td>{{ cv.skills|truncatechars:40 }}</td>
+                    <td>
+                        <span class="badge {% if cv.is_reviewed %}badge-success{% else %}badge-warning{% endif %}">
+                            {% if cv.is_reviewed %}Reviewed{% else %}Pending{% endif %}
+                        </span>
+                    </td>
+                    <td>{{ cv.created_at|date:"M d, Y" }}</td>
+                    <td>
+                        <a href="{% url 'portal:talent_pool_detail' cv.pk %}" class="portal-btn portal-btn-secondary portal-btn-sm">View Details</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="portal-empty">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <h3>No candidates found</h3>
+        <p>No one has uploaded a CV matching your criteria yet.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

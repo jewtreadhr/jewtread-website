@@ -1,0 +1,81 @@
+{% extends "portal/base.html" %}
+
+{% block title %}CV Detail: {{ cv.full_name }}{% endblock %}
+{% block page_title %}Candidate Detail{% endblock %}
+
+{% block content %}
+<div class="portal-card">
+    <div class="portal-card-header">
+        <h2 class="portal-card-title">{{ cv.full_name }}</h2>
+        <div class="portal-header-actions" style="display: flex; gap: 12px; align-items: center;">
+            <span class="badge {% if cv.is_reviewed %}badge-success{% else %}badge-warning{% endif %}">
+                {% if cv.is_reviewed %}Reviewed{% else %}Pending{% endif %}
+            </span>
+            <a href="{% url 'portal:talent_pool_list' %}" class="portal-btn portal-btn-secondary portal-btn-sm">Back to List</a>
+        </div>
+    </div>
+    <div class="portal-card-body">
+        
+        <div class="detail-section">
+            <h3 class="detail-section-title">Candidate Information</h3>
+            <div class="portal-form-row">
+                <div>
+                    <label class="portal-form-label">Full Name</label>
+                    <p>{{ cv.full_name }}</p>
+                </div>
+                <div>
+                    <label class="portal-form-label">Email Address</label>
+                    <p><a href="mailto:{{ cv.email }}" style="color: var(--portal-info);">{{ cv.email }}</a></p>
+                </div>
+                <div>
+                    <label class="portal-form-label">Phone Number</label>
+                    <p><a href="tel:{{ cv.phone }}" style="color: var(--portal-info);">{{ cv.phone }}</a></p>
+                </div>
+                <div>
+                    <label class="portal-form-label">Date Submitted</label>
+                    <p>{{ cv.created_at|date:"M d, Y h:i A" }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-section">
+            <h3 class="detail-section-title">Skills & Bio</h3>
+            <div style="margin-bottom: 20px;">
+                <label class="portal-form-label">Skills</label>
+                <p>{{ cv.skills|default:"No skills provided." }}</p>
+            </div>
+            <div>
+                <label class="portal-form-label">Bio / Introduction</label>
+                <div style="background: var(--portal-bg); padding: 16px; border-radius: var(--portal-radius-sm); white-space: pre-wrap;">{{ cv.bio|default:"No bio provided." }}</div>
+            </div>
+        </div>
+
+        <div class="detail-section">
+            <h3 class="detail-section-title">Resume / CV</h3>
+            {% if cv.cv_file %}
+                <a href="{{ cv.cv_file.url }}" class="portal-btn portal-btn-primary" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download CV
+                </a>
+            {% else %}
+                <p class="portal-form-error">No CV file was uploaded.</p>
+            {% endif %}
+        </div>
+
+        <hr style="border: none; border-top: 1px solid var(--portal-border); margin: 32px 0;">
+
+        <div class="detail-section">
+            <h3 class="detail-section-title">Actions</h3>
+            <form method="POST" action="{% url 'portal:talent_pool_update_status' cv.pk %}" style="display: flex; gap: 12px;">
+                {% csrf_token %}
+                {% if cv.is_reviewed %}
+                    <button type="submit" name="action" value="mark_pending" class="portal-btn portal-btn-secondary">Mark as Pending</button>
+                {% else %}
+                    <button type="submit" name="action" value="mark_reviewed" class="portal-btn portal-btn-primary">Mark as Reviewed</button>
+                {% endif %}
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

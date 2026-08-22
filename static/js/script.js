@@ -305,35 +305,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 5. Signup Page & Role Switcher
+    // 5. Signup Page JS
     // ==========================================
-    const authTabBtns = document.querySelectorAll('.auth-tab-btn');
-    const companyField = document.getElementById('company-field');
-    let selectedRole = 'seeker';
-
-    if (authTabBtns.length > 0) {
-        authTabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                authTabBtns.forEach(b => {
-                    b.classList.remove('active');
-                    b.setAttribute('aria-selected', 'false');
-                });
-                btn.classList.add('active');
-                btn.setAttribute('aria-selected', 'true');
-                selectedRole = btn.getAttribute('data-tab') || 'seeker';
-
-                if (companyField) {
-                    if (selectedRole === 'employer') {
-                        companyField.style.display = 'block';
-                        companyField.querySelector('input').setAttribute('required', '');
-                    } else {
-                        companyField.style.display = 'none';
-                        companyField.querySelector('input').removeAttribute('required');
-                    }
-                }
-            });
-        });
-    }
 
     const togglePasswordBtn = document.getElementById('toggle-password');
     const passwordInput = document.getElementById('reg-password');
@@ -349,63 +322,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const signupForm = document.getElementById('signup-form');
-    if (signupForm) {
-        const signupFeedback = document.getElementById('signup-feedback');
-        const signupBtn = signupForm.querySelector('button[type="submit"]');
-
-        signupForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const emailVal = document.getElementById('reg-email') ? document.getElementById('reg-email').value : 'user@example.com';
-            JewtreadStore.setUserSession(selectedRole, emailVal);
-
-            if (signupBtn) {
-                signupBtn.disabled = true;
-                if (signupBtn.querySelector('.btn-text')) signupBtn.querySelector('.btn-text').textContent = 'Creating account...';
-            }
-
-            setTimeout(() => {
-                const targetDashboard = selectedRole === 'employer' ? 'hire-a-professional.html' : 'job-seeker-dashboard.html';
-                if (signupFeedback) {
-                    signupFeedback.className = 'form-feedback success';
-                    signupFeedback.innerHTML = `
-                        <div class="success-header">
-                            <span class="success-icon">✓</span>
-                            <strong>Account Created Successfully!</strong>
-                        </div>
-                        <p>Welcome to Jewtread HR. <a href="${targetDashboard}" style="color: var(--cta-emerald); font-weight: 600;">Continue to ${selectedRole === 'employer' ? 'hire talent' : 'your dashboard'}</a></p>
-                    `;
-                }
-                setTimeout(() => { window.location.href = targetDashboard; }, 1000);
-            }, 1000);
-        });
-    }
+    // Native Django form submission will now handle signup securely.
 
     // ==========================================
-    // 6. Login Form Handler
+    // 6. Login/Signup Mock Simulation (REMOVED)
     // ==========================================
-    const loginForm = document.getElementById('login-form');
-    if (loginForm) {
-        const loginFeedback = document.getElementById('login-feedback');
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const emailInput = document.getElementById('login-email') || document.getElementById('email');
-            const emailVal = emailInput ? emailInput.value.toLowerCase() : '';
-            const role = emailVal.includes('employer') || emailVal.includes('company') || emailVal.includes('hr') ? 'employer' : 'seeker';
-            
-            JewtreadStore.setUserSession(role, emailVal);
-
-            if (loginFeedback) {
-                loginFeedback.className = 'form-feedback success';
-                loginFeedback.textContent = `Sign-in successful. Redirecting to ${role === 'employer' ? 'the hiring portal' : 'your job seeker dashboard'}...`;
-            }
-
-            setTimeout(() => {
-                const target = role === 'employer' ? 'hire-a-professional.html' : 'job-seeker-dashboard.html';
-                window.location.href = target;
-            }, 800);
-        });
-    }
+    // Native Django form submission will now handle this securely.
 
     // Login Notice helper
     const loginNotice = document.getElementById('login-notice');
@@ -725,7 +647,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <h3>${info.title}</h3>
                             <p>${info.meta}</p>
                         </div>
-                        <a href="job-opportunities.html" class="btn btn-secondary">View Role</a>
+                        <a href="/jobs/" class="btn btn-secondary">View Role</a>
                     </article>
                 `;
             }).join('');
@@ -746,7 +668,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p style="margin-bottom:0; font-size:0.9rem; color:var(--text-muted);">${app.company || 'Jewtread HR'} · ${app.location || 'Nigeria'}</p>
                         <span style="font-size:0.8rem; color:var(--text-muted);">Applied: ${app.appliedAt}</span>
                     </div>
-                    <a href="job-opportunities.html" class="text-link">View role &rarr;</a>
+                    <a href="/jobs/" class="text-link">View role &rarr;</a>
                 </article>
             `).join('');
         }
@@ -793,7 +715,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="no-results-state">
                         <h3>No Saved Jobs Yet</h3>
                         <p>You haven't bookmarked any opportunities. Explore roles to save job openings you are interested in.</p>
-                        <a href="job-opportunities.html" class="btn btn-primary">Browse Opportunities</a>
+                        <a href="/jobs/" class="btn btn-primary">Browse Opportunities</a>
                     </div>
                 `;
                 return;
@@ -823,7 +745,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="opportunity-card-actions">
                             <button class="save-job saved" type="button" data-job-id="${id}">Saved</button>
                             <button class="btn btn-secondary quick-apply-btn" type="button" data-job-id="${id}" data-job-title="${role.title}">Quick Apply</button>
-                            <a href="job-details.html" class="btn btn-primary">View role</a>
+                            <a href="/jobs/" class="btn btn-primary">View role</a>
                         </div>
                     </article>
                 `;

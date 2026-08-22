@@ -1,148 +1,335 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us | Jewtread HR</title>
-    <link rel="icon" type="image/png" href="{% static 'images/jewtread-logo.png' %}">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/jewtread-logo.png' %}"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <header class="navbar">
-        <div class="container nav-container">
-            <a href="{% url 'core:index' %}" class="logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;">Jewtread<span>HR</span></a>
-            <nav class="nav-menu" id="nav-menu">
-                <a href="{% url 'core:services' %}">Services</a>
-                <a href="{% url 'core:about' %}" class="active">About Us</a>
-                <a href="{% url 'core:contact' %}">Contact Us</a>
-                <a href="{% url 'services:hire' %}" class="nav-link-signin">Hire a Professional</a>
-                <a href="{% url 'users:profile' %}" class="btn btn-secondary">Upload CV</a>
-            </nav>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-        </div>
+      <div class="container nav-container">
+        <a href="{% url 'core:index' %}" class="logo"
+          ><img
+            src="{% static 'images/jewtread-logo.png' %}"
+            alt="Jewtread HR Logo"
+            style="height: 40px"
+          /><span class="brand-word">Jewtreadhr</span></a
+        >
+        <nav class="nav-menu" id="nav-menu">
+          <a href="{% url 'core:services' %}">Services</a>
+          <a href="{% url 'core:about' %}" class="active">About Us</a>
+          <a href="{% url 'core:contact' %}">Contact Us</a>
+          <a href="{% url 'services:hire' %}" class="nav-link-signin"
+            >Hire a Professional</a
+          >
+          <a href="{% url 'users:upload_cv' %}" class="btn btn-secondary"
+            >Upload CV</a
+          >
+        </nav>
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-label="Toggle Navigation"
+          aria-expanded="false"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
     </header>
 
     <section class="page-banner">
-        <div class="container">
-            <span class="banner-eyebrow">The Jewtread HR difference</span>
-            <h1>About Jewtread HR</h1>
-            <p>Transforming how organisations and families connect with exceptional people.</p>
-        </div>
+      <div class="container">
+        <span class="banner-eyebrow">The Jewtread HR difference</span>
+        <h1>About Jewtread HR</h1>
+        <p>
+          Transforming how organisations and families connect with exceptional
+          people.
+        </p>
+      </div>
     </section>
 
     <section class="about-intro-section">
-        <div class="container about-intro-grid">
-            <div>
-                <span class="section-kicker">People are the difference</span>
-                <h2>Better people decisions, made simpler.</h2>
-            </div>
-            <div class="about-intro-copy">
-                <p>Jewtread HR is a human capital partner for the moments when getting the right person matters most. We bring the same care, discretion, and rigour to a family hiring for home as we do to an organisation growing a team.</p>
-                <a href="{% url 'core:services' %}" class="text-link">Explore our services &rarr;</a>
-            </div>
+      <div class="container about-intro-grid">
+        <div>
+          <span class="section-kicker">People are the difference</span>
+          <h2>Better people decisions, made simpler.</h2>
         </div>
+        <div class="about-intro-copy">
+          <p>
+            Jewtread HR is a human capital partner for the moments when getting
+            the right person matters most. We bring the same care, discretion,
+            and rigour to a family hiring for home as we do to an organisation
+            growing a team.
+          </p>
+          <a href="{% url 'core:services' %}" class="text-link"
+            >Explore our services &rarr;</a
+          >
+        </div>
+      </div>
     </section>
 
     <section class="about-page-content">
-        <div class="container">
-            <div class="about-section-grid">
-                
-                <div class="vision-mission-card reveal">
-                    <h2>Our Vision</h2>
-                    <div class="statement-block">
-                        <strong>The Destination</strong>
-                        <p>To become a trusted global leader in human capital solutions, shaping a future where exceptional people and forward-thinking organisations thrive and achieve lasting progress together.</p>
-                    </div>
-                </div>
-
-                <div class="vision-mission-card reveal">
-                    <h2>Our Mission</h2>
-                    <div class="statement-block">
-                        <strong>The Path</strong>
-                        <p>To connect exceptional people with the right opportunities through professional recruitment, staffing, and workforce management solutions. We partner with households and businesses to simplify people management, enhance productivity, and build capable teams with integrity, excellence, and a commitment to long-term success.</p>
-                    </div>
-                </div>
-
+      <div class="container">
+        <div class="about-section-grid">
+          <div class="vision-mission-card reveal">
+            <h2>Our Vision</h2>
+            <div class="statement-block">
+              <strong>The Destination</strong>
+              <p>
+                To become a trusted global leader in human capital solutions,
+                shaping a future where exceptional people and forward-thinking
+                organisations thrive and achieve lasting progress together.
+              </p>
             </div>
+          </div>
+
+          <div class="vision-mission-card reveal">
+            <h2>Our Mission</h2>
+            <div class="statement-block">
+              <strong>The Path</strong>
+              <p>
+                To connect exceptional people with the right opportunities
+                through professional recruitment, staffing, and workforce
+                management solutions. We partner with households and businesses
+                to simplify people management, enhance productivity, and build
+                capable teams with integrity, excellence, and a commitment to
+                long-term success.
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <section class="principles-section">
-        <div class="container">
-            <div class="section-heading-row">
-                <div>
-                    <span class="section-kicker">How we show up</span>
-                    <h2>Thoughtful people support at every stage</h2>
-                </div>
-                <p class="section-side-copy">A practical partnership, not a database of names.</p>
-            </div>
-            <div class="principles-grid">
-                <div class="principle-card"><span>01</span><h3>We listen first</h3><p>Every search begins with a real understanding of the role, environment, and expectations.</p></div>
-                <div class="principle-card"><span>02</span><h3>We look beneath the CV</h3><p>We take screening seriously, combining reference checks with a focus on fit and character.</p></div>
-                <div class="principle-card"><span>03</span><h3>We stay accountable</h3><p>Our support continues after the introduction, helping people and teams start well.</p></div>
-            </div>
+      <div class="container">
+        <div class="section-heading-row">
+          <div>
+            <span class="section-kicker">How we show up</span>
+            <h2>Thoughtful people support at every stage</h2>
+          </div>
+          <p class="section-side-copy">
+            A practical partnership, not a database of names.
+          </p>
         </div>
+        <div class="principles-grid">
+          <div class="principle-card">
+            <span>01</span>
+            <h3>We listen first</h3>
+            <p>
+              Every search begins with a real understanding of the role,
+              environment, and expectations.
+            </p>
+          </div>
+          <div class="principle-card">
+            <span>02</span>
+            <h3>We look beneath the CV</h3>
+            <p>
+              We take screening seriously, combining reference checks with a
+              focus on fit and character.
+            </p>
+          </div>
+          <div class="principle-card">
+            <span>03</span>
+            <h3>We stay accountable</h3>
+            <p>
+              Our support continues after the introduction, helping people and
+              teams start well.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Core Values Section -->
     <section class="values-section">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2>Our Core Values</h2>
-                <p>The guiding principles behind every placement, screening, and advisory service we deliver.</p>
-            </div>
-            <div class="values-grid">
-                <div class="value-card reveal">
-                    <div class="icon" style="color: var(--cta-emerald); display: inline-flex; justify-content: center; margin-bottom: 16px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    </div>
-                    <h3>Integrity</h3>
-                    <p>We build absolute trust through transparent sourcing, rigorous reference reviews, and authentic assessments.</p>
-                </div>
-                <div class="value-card reveal">
-                    <div class="icon" style="color: var(--cta-emerald); display: inline-flex; justify-content: center; margin-bottom: 16px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                    </div>
-                    <h3>Excellence</h3>
-                    <p>We maintain high standards, ensuring only the most capable, dedicated, and skilled talent is presented.</p>
-                </div>
-                <div class="value-card reveal">
-                    <div class="icon" style="color: var(--cta-emerald); display: inline-flex; justify-content: center; margin-bottom: 16px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    </div>
-                    <h3>Dependability</h3>
-                    <p>We provide continuous staffing support and swift replacements to keep your household or business running smoothly.</p>
-                </div>
-                <div class="value-card reveal">
-                    <div class="icon" style="color: var(--cta-emerald); display: inline-flex; justify-content: center; margin-bottom: 16px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
-                    </div>
-                    <h3>Growth</h3>
-                    <p>We empower homes with peace of mind and companies with strategic talent that drives long-term success.</p>
-                </div>
-            </div>
+      <div class="container">
+        <div class="section-header reveal">
+          <p>
+            The guiding principles behind every placement, screening, and
+            advisory service we deliver.
+          </p>
         </div>
+        <div class="values-grid">
+          <div class="value-card reveal">
+            <div
+              class="icon"
+              style="
+                color: var(--cta-emerald);
+                display: inline-flex;
+                justify-content: center;
+                margin-bottom: 16px;
+              "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3>Integrity</h3>
+            <p>
+              We build absolute trust through transparent sourcing, rigorous
+              reference reviews, and authentic assessments.
+            </p>
+          </div>
+          <div class="value-card reveal">
+            <div
+              class="icon"
+              style="
+                color: var(--cta-emerald);
+                display: inline-flex;
+                justify-content: center;
+                margin-bottom: 16px;
+              "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                ></polygon>
+              </svg>
+            </div>
+            <h3>Excellence</h3>
+            <p>
+              We maintain high standards, ensuring only the most capable,
+              dedicated, and skilled talent is presented.
+            </p>
+          </div>
+          <div class="value-card reveal">
+            <div
+              class="icon"
+              style="
+                color: var(--cta-emerald);
+                display: inline-flex;
+                justify-content: center;
+                margin-bottom: 16px;
+              "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3>Dependability</h3>
+            <p>
+              We provide continuous staffing support and swift replacements to
+              keep your household or business running smoothly.
+            </p>
+          </div>
+          <div class="value-card reveal">
+            <div
+              class="icon"
+              style="
+                color: var(--cta-emerald);
+                display: inline-flex;
+                justify-content: center;
+                margin-bottom: 16px;
+              "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+            </div>
+            <h3>Growth</h3>
+            <p>
+              We empower homes with peace of mind and companies with strategic
+              talent that drives long-term success.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <footer class="footer">
-        <div class="container footer-main">
-            <div class="footer-brand"><a href="{% url 'core:index' %}" class="footer-logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;">Jewtread<span>HR</span></a><p>Connecting dependable professionals with households and businesses across Nigeria.</p></div>
-            <div class="footer-links"><h3>Job seekers</h3><a href="{% url 'jobs:list' %}">Browse opportunities</a><a href="#">Upload CV</a><a href="{% url 'users:jobseeker_dashboard' %}">My dashboard</a></div>
-            <div class="footer-links"><h3>Employers</h3><a href="{% url 'services:hire' %}">Hire a professional</a><a href="{% url 'core:services' %}#corporate">Find talent</a><a href="{% url 'core:services' %}#management">Staff management</a><a href="{% url 'core:contact' %}">Contact our team</a></div>
-            <div class="footer-links"><h3>Jewtread HR</h3><a href="{% url 'core:about' %}">About us</a><a href="{% url 'core:services' %}">Our services</a><a href="{% url 'core:contact' %}">Contact us</a></div>
+        <footer class="footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a href="{% url 'core:index' %}" class="footer-logo">
+            <img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px" /><span class="brand-word">Jewtreadhr</span>
+          </a>
+          <p>Connecting dependable professionals with households and businesses across Nigeria.</p>
+          <p class="footer-contact">Ocean Centre Plot 1018, Cadastral Zone B18 Off Oladipo Diya Road, Gudu District, Abuja<br>Tel: 07047577145</p>
         </div>
-        <div class="container footer-bottom"><p>&copy; 2026 Jewtread HR. All Rights Reserved.</p><p>Building Better Homes and Stronger Businesses.</p></div>
+        <div class="footer-links">
+          <h3>Job seekers</h3>
+          <a href="{% url 'users:upload_cv' %}">Upload CV</a>
+          <a href="{% url 'core:contact' %}">Get support</a>
+        </div>
+        <div class="footer-links">
+          <h3>Employers</h3>
+          <a href="{% url 'services:hire' %}">Hire a professional</a>
+          <a href="{% url 'core:services' %}#corporate">Find talent</a>
+          <a href="{% url 'core:contact' %}">Contact our team</a>
+        </div>
+        <div class="footer-links">
+          <h3>Jewtreadhr</h3>
+          <a href="{% url 'core:about' %}">About us</a>
+          <a href="{% url 'core:services' %}">Our services</a>
+          <a href="{% url 'core:privacy' %}">Privacy Policy</a>
+          <a href="{% url 'core:terms' %}">Terms & Conditions</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>&copy; 2026 Jewtreadhr. All Rights Reserved.</p>
+        <p>Building Better Homes and Stronger Businesses.</p>
+      </div>
     </footer>
 
     <script src="{% static 'js/script.js' %}"></script>
-</body>
+  </body>
 </html>

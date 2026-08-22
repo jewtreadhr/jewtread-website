@@ -31,13 +31,13 @@
     <!-- Shared Navigation -->
     <header class="navbar">
         <div class="container nav-container">
-            <a href="{% url 'core:index' %}" class="logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;">Jewtread<span>HR</span></a>
+            <a href="{% url 'core:index' %}" class="logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;"><span class="brand-word">Jewtreadhr</span></a>
             <nav class="nav-menu" id="nav-menu">
                 <a href="{% url 'core:services' %}">Services</a>
                 <a href="{% url 'core:about' %}">About Us</a>
                 <a href="{% url 'core:contact' %}">Contact Us</a>
                 <a href="{% url 'services:hire' %}" class="nav-link-signin">Hire a Professional</a>
-                <a href="{% url 'users:profile' %}" class="btn btn-secondary">Upload CV</a>
+                <a href="{% url 'users:upload_cv' %}" class="btn btn-secondary">Upload CV</a>
             </nav>
             <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
                 <span class="bar"></span>
@@ -55,7 +55,7 @@
                 <p>Connecting families and businesses with carefully sourced, screened, and dependable professionals who bring integrity, efficiency, and peace of mind.</p>
                 
                 <!-- Reed.co.uk Style Double Search Bar -->
-                <form class="hero-search-form" id="hero-job-search" action="job-opportunities.html" method="GET">
+                {% comment %} <form class="hero-search-form" id="hero-job-search" action="{% url 'jobs:list' %}" method="GET">
                     <div class="search-input-group">
                         <label for="search-what" class="search-label">What</label>
                         <div class="input-with-icon">
@@ -71,16 +71,9 @@
                         </div>
                     </div>
                     <button type="submit" class="btn-search">Search jobs</button>
-                </form>
+                </form> {% endcomment %}
 
-                <div class="popular-searches">
-                    <span>Popular: </span>
-                    <a href="job-opportunities.html?q=Chef">Chef</a>, 
-                    <a href="job-opportunities.html?q=Driver">Driver</a>, 
-                    <a href="job-opportunities.html?q=Executive+Assistant">Executive PA</a>, 
-                    <a href="job-opportunities.html?q=Nanny">Nanny</a>,
-                    <a href="job-opportunities.html?q=Housekeeper">Housekeeper</a>
-                </div>
+               
             </div>
             
             <div class="hero-image-wrapper reveal">
@@ -120,7 +113,7 @@
             <div class="overview-grid">
                 <div class="card reveal">
                     <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
-                    <h3>Domestic Staffing</h3><p>Verified, dependable household professionals including chefs, nannies, housekeepers, and executive drivers.</p><a href="services.html#domestic" class="text-link">Learn More &rarr;</a>
+                    <h3>Domestic Staffing</h3><p>Verified, dependable household professionals including chefs, nannies, housekeepers, and executive drivers.</p><a href="{% url 'core:services' %}#domestic" class="text-link">Learn More &rarr;</a>
                 </div>
                 
                 <div class="card reveal">
@@ -137,36 +130,38 @@
     </section>
 
     <!-- Shared Footer -->
-    <footer class="footer">
-        <div class="container footer-main">
-            <div class="footer-brand">
-                <a href="{% url 'core:index' %}" class="footer-logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;">Jewtread<span>HR</span></a>
-                <p>Connecting dependable professionals with households and businesses across Nigeria.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Job seekers</h3>
-                <a href="{% url 'jobs:list' %}">Browse opportunities</a>
-                <a href="#">Upload CV</a>
-                <a href="{% url 'users:jobseeker_dashboard' %}">My dashboard</a>
-            </div>
-            <div class="footer-links">
-                <h3>Employers</h3>
-                <a href="{% url 'services:hire' %}">Hire a professional</a>
-                <a href="{% url 'core:services' %}#corporate">Find talent</a>
-                <a href="{% url 'core:services' %}#management">Staff management</a>
-                <a href="{% url 'core:contact' %}">Contact our team</a>
-            </div>
-            <div class="footer-links">
-                <h3>Jewtread HR</h3>
-                <a href="{% url 'core:about' %}">About us</a>
-                <a href="{% url 'core:services' %}">Our services</a>
-                <a href="{% url 'core:contact' %}">Contact us</a>
-            </div>
+        <footer class="footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a href="{% url 'core:index' %}" class="footer-logo">
+            <img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px" /><span class="brand-word">Jewtreadhr</span>
+          </a>
+          <p>Connecting dependable professionals with households and businesses across Nigeria.</p>
+          <p class="footer-contact">Ocean Centre Plot 1018, Cadastral Zone B18 Off Oladipo Diya Road, Gudu District, Abuja<br>Tel: 07047577145</p>
         </div>
-        <div class="container footer-bottom">
-            <p>&copy; 2026 Jewtread HR. All Rights Reserved.</p>
-            <p>Building Better Homes and Stronger Businesses.</p>
+        <div class="footer-links">
+          <h3>Job seekers</h3>
+          <a href="{% url 'users:upload_cv' %}">Upload CV</a>
+          <a href="{% url 'core:contact' %}">Get support</a>
         </div>
+        <div class="footer-links">
+          <h3>Employers</h3>
+          <a href="{% url 'services:hire' %}">Hire a professional</a>
+          <a href="{% url 'core:services' %}#corporate">Find talent</a>
+          <a href="{% url 'core:contact' %}">Contact our team</a>
+        </div>
+        <div class="footer-links">
+          <h3>Jewtreadhr</h3>
+          <a href="{% url 'core:about' %}">About us</a>
+          <a href="{% url 'core:services' %}">Our services</a>
+          <a href="{% url 'core:privacy' %}">Privacy Policy</a>
+          <a href="{% url 'core:terms' %}">Terms & Conditions</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>&copy; 2026 Jewtreadhr. All Rights Reserved.</p>
+        <p>Building Better Homes and Stronger Businesses.</p>
+      </div>
     </footer>
 
     <script src="{% static 'js/script.js' %}"></script>

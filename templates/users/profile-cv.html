@@ -1,113 +1,281 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Your CV | Jewtread HR</title>
-    <meta name="description" content="Submit your CV to Jewtread HR for domestic staffing and corporate job opportunities across Nigeria.">
-    <link rel="icon" type="image/png" href="{% static 'images/jewtread-logo.png' %}">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload CV | Jewtread HR</title>
+    <meta
+      name="description"
+      content="Submit your CV to the Jewtread HR talent pool."
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/jewtread-logo.png' %}"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <header class="navbar">
-        <div class="container nav-container">
-            <a href="{% url 'core:index' %}" class="logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;">Jewtread<span>HR</span></a>
-            <nav class="nav-menu" id="nav-menu">
-                <a href="{% url 'core:services' %}">Services</a>
-                <a href="{% url 'core:about' %}">About Us</a>
-                <a href="{% url 'core:contact' %}">Contact Us</a>
-                <a href="{% url 'services:hire' %}" class="nav-link-signin">Hire a Professional</a>
-                <a href="#" class="btn btn-secondary active">Upload CV</a>
-            </nav>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-        </div>
+      <div class="container nav-container">
+        <a href="{% url 'core:index' %}" class="logo"
+          ><img
+            src="{% static 'images/jewtread-logo.png' %}"
+            alt="Jewtread HR Logo"
+            style="height: 40px"
+          /><span class="brand-word">Jewtreadhr</span></a
+        >
+        <nav class="nav-menu" id="nav-menu">
+          <a href="{% url 'core:services' %}">Services</a>
+          <a href="{% url 'core:about' %}">About Us</a>
+          <a href="{% url 'core:contact' %}">Contact Us</a>
+          <a href="{% url 'services:hire' %}" class="nav-link-signin"
+            >Hire a Professional</a
+          >
+          <a href="{% url 'users:upload_cv' %}" class="btn btn-secondary"
+            >Upload CV</a
+          >
+        </nav>
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-label="Toggle Navigation"
+          aria-expanded="false"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
     </header>
 
-    <main class="direct-upload-main">
-        <section class="container direct-upload-layout">
-            <div class="direct-upload-copy">
-                <span class="section-kicker">Direct candidate intake</span>
-                <h1>Upload your CV</h1>
-                <p>Send your details directly to Jewtread HR. Our recruitment team will review your CV and contact you when a matching domestic or corporate opportunity is available.</p>
+    <main
+      class="auth-container"
+      style="padding-top: 40px; padding-bottom: 60px"
+    >
+      <div class="auth-card" style="max-width: 600px">
+        <div class="auth-header">
+          <h1>Submit your CV</h1>
+          <p>
+            Join our talent pool. Upload a single unique Master CV to be
+            considered for upcoming roles.
+          </p>
+        </div>
+
+        {% if messages %}
+        <div style="margin-bottom: 24px">
+          {% for message in messages %}
+          <div class="form-feedback success" style="display: block">
+            <span class="success-icon">✓</span>
+            {{ message }}
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data" class="profile-form">
+          {% csrf_token %}
+
+          <div class="form-group">
+            <label for="id_full_name"
+              >Full Name <span class="required">*</span></label
+            >
+            <input
+              type="text"
+              name="full_name"
+              id="id_full_name"
+              class="portal-form-input"
+              required
+            />
+            {% if form.full_name.errors %}
+            <div style="color: #e53e3e; font-size: 0.85rem; margin-top: 4px">
+              {{ form.full_name.errors }}
             </div>
+            {% endif %}
+          </div>
 
-            <section class="direct-upload-panel">
-                <h2>Candidate Details & CV Attachment</h2>
-                <form id="direct-cv-upload-form" novalidate>
-                    <div class="form-grid-two">
-                        <div class="form-group">
-                            <label for="direct-full-name">Full name</label>
-                            <input id="direct-full-name" type="text" required placeholder="e.g. Samuel Okafor">
-                        </div>
-                        <div class="form-group">
-                            <label for="direct-email">Email address</label>
-                            <input id="direct-email" type="email" required placeholder="e.g. samuel@example.com">
-                        </div>
-                    </div>
+          <div class="form-group" style="display: flex; gap: 16px">
+            <div style="flex: 1">
+              <label for="id_email"
+                >Email Address <span class="required">*</span></label
+              >
+              <input
+                type="email"
+                name="email"
+                id="id_email"
+                class="portal-form-input"
+                required
+              />
+              {% if form.email.errors %}
+              <div style="color: #e53e3e; font-size: 0.85rem; margin-top: 4px">
+                {{ form.email.errors }}
+              </div>
+              {% endif %}
+            </div>
+            <div style="flex: 1">
+              <label for="id_phone"
+                >Phone Number <span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name="phone"
+                id="id_phone"
+                class="portal-form-input"
+                required
+              />
+              {% if form.phone.errors %}
+              <div style="color: #e53e3e; font-size: 0.85rem; margin-top: 4px">
+                {{ form.phone.errors }}
+              </div>
+              {% endif %}
+            </div>
+          </div>
 
-                    <div class="form-grid-two">
-                        <div class="form-group">
-                            <label for="direct-phone">Phone number</label>
-                            <input id="direct-phone" type="tel" required placeholder="e.g. +234 801 234 5678">
-                        </div>
-                        <div class="form-group">
-                            <label for="direct-role-interest">Role interest</label>
-                            <input id="direct-role-interest" type="text" placeholder="e.g. Chef, Executive PA, Driver">
-                        </div>
-                    </div>
+          <div class="form-group">
+            <label for="id_bio">Professional Bio / Short Introduction</label>
+            <textarea
+              name="bio"
+              id="id_bio"
+              class="portal-form-textarea"
+              rows="4"
+            ></textarea>
+            {% if form.bio.errors %}
+            <div style="color: #e53e3e; font-size: 0.85rem; margin-top: 4px">
+              {{ form.bio.errors }}
+            </div>
+            {% endif %}
+          </div>
 
-                    <div class="form-group">
-                        <label for="direct-location">Location / State</label>
-                        <input id="direct-location" type="text" placeholder="e.g. Lagos, Abuja, Port Harcourt">
-                    </div>
+          <div class="form-group">
+            <label for="id_skills"
+              >Key Skills
+              <span style="font-weight: 400; color: var(--text-light)"
+                >(Comma separated)</span
+              ></label
+            >
+            <input
+              type="text"
+              name="skills"
+              id="id_skills"
+              class="portal-form-input"
+            />
+            {% if form.skills.errors %}
+            <div style="color: #e53e3e; font-size: 0.85rem; margin-top: 4px">
+              {{ form.skills.errors }}
+            </div>
+            {% endif %}
+          </div>
 
-                    <div class="form-group">
-                        <label for="profile-cv-file">CV document (PDF, DOC, DOCX up to 5MB)</label>
-                        <div class="file-dropzone" id="profile-cv-dropzone" tabindex="0" role="button" aria-label="Upload CV file">
-                            <svg class="dropzone-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                            <p><strong>Click to browse</strong> or drop your CV file here</p>
-                            <small>Supported formats: PDF, DOC, DOCX (Max 5MB)</small>
-                            <input type="file" id="profile-cv-file" accept=".pdf,.doc,.docx" required>
-                        </div>
-                    </div>
+          <div class="form-group">
+            <label for="id_cv_file"
+              >Master CV Document <span class="required">*</span>
+              <span style="font-weight: 400; color: var(--text-light)"
+                >(PDF, DOC, DOCX)</span
+              ></label
+            >
 
-                    <div class="cv-attached-card" id="cv-attached-card" hidden>
-                        <div>
-                            <strong id="cv-file-name">cv-document.pdf</strong>
-                            <small id="cv-file-meta">Ready to submit</small>
-                        </div>
-                        <button type="button" class="btn btn-secondary" id="remove-cv-btn">Remove CV</button>
-                    </div>
+            <div
+              class="file-dropzone"
+              style="position: relative; margin-top: 8px"
+            >
+              <svg
+                class="dropzone-icon"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              <p>Click to browse or drag your file here</p>
+              <small
+                style="
+                  color: var(--text-light);
+                  display: block;
+                  margin-top: 4px;
+                "
+                >Max file size: 5MB</small
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  opacity: 0;
+                  cursor: pointer;
+                "
+              >
+                <input type="file" name="cv_file" id="id_cv_file" required />
+              </div>
+            </div>
+            {% if form.cv_file.errors %}
+            <div style="color: #e53e3e; font-size: 0.85rem; margin-top: 6px">
+              {{ form.cv_file.errors }}
+            </div>
+            {% endif %}
+          </div>
 
-                    <div id="direct-cv-feedback" class="form-feedback" aria-live="polite"></div>
-                    <button type="submit" class="btn btn-primary btn-block">Submit CV</button>
-                </form>
-            </section>
-        </section>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            style="margin-top: 32px"
+          >
+            Submit CV
+          </button>
+        </form>
+      </div>
     </main>
 
-    <footer class="footer">
-        <div class="container footer-main">
-            <div class="footer-brand"><a href="{% url 'core:index' %}" class="footer-logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;">Jewtread<span>HR</span></a><p>Connecting dependable professionals with households and businesses across Nigeria.</p></div>
-            <div class="footer-links"><h3>Job seekers</h3><a href="{% url 'jobs:list' %}">Browse opportunities</a><a href="#">Upload CV</a><a href="{% url 'users:jobseeker_dashboard' %}">My dashboard</a></div>
-            <div class="footer-links"><h3>Employers</h3><a href="{% url 'services:hire' %}">Hire a professional</a><a href="{% url 'core:services' %}#corporate">Find talent</a><a href="{% url 'core:services' %}#management">Staff management</a><a href="{% url 'core:contact' %}">Contact our team</a></div>
-            <div class="footer-links"><h3>Jewtread HR</h3><a href="{% url 'core:about' %}">About us</a><a href="{% url 'core:services' %}">Our services</a><a href="{% url 'core:contact' %}">Contact us</a></div>
+    <!-- Shared Footer -->
+        <footer class="footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a href="{% url 'core:index' %}" class="footer-logo">
+            <img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px" /><span class="brand-word">Jewtreadhr</span>
+          </a>
+          <p>Connecting dependable professionals with households and businesses across Nigeria.</p>
+          <p class="footer-contact">Ocean Centre Plot 1018, Cadastral Zone B18 Off Oladipo Diya Road, Gudu District, Abuja<br>Tel: 07047577145</p>
         </div>
-        <div class="container footer-bottom">
-            <p>&copy; 2026 Jewtread HR. All Rights Reserved.</p>
-            <p>Building Better Homes and Stronger Businesses.</p>
+        <div class="footer-links">
+          <h3>Job seekers</h3>
+          <a href="{% url 'users:upload_cv' %}">Upload CV</a>
+          <a href="{% url 'core:contact' %}">Get support</a>
         </div>
+        <div class="footer-links">
+          <h3>Employers</h3>
+          <a href="{% url 'services:hire' %}">Hire a professional</a>
+          <a href="{% url 'core:services' %}#corporate">Find talent</a>
+          <a href="{% url 'core:contact' %}">Contact our team</a>
+        </div>
+        <div class="footer-links">
+          <h3>Jewtreadhr</h3>
+          <a href="{% url 'core:about' %}">About us</a>
+          <a href="{% url 'core:services' %}">Our services</a>
+          <a href="{% url 'core:privacy' %}">Privacy Policy</a>
+          <a href="{% url 'core:terms' %}">Terms & Conditions</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>&copy; 2026 Jewtreadhr. All Rights Reserved.</p>
+        <p>Building Better Homes and Stronger Businesses.</p>
+      </div>
     </footer>
 
     <script src="{% static 'js/script.js' %}"></script>
-</body>
+  </body>
 </html>

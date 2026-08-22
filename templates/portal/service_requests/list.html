@@ -1,0 +1,68 @@
+{% extends "portal/base.html" %}
+
+{% block title %}Staffing Requests{% endblock %}
+{% block page_title %}Staffing Requests{% endblock %}
+
+{% block content %}
+<div class="portal-card">
+    <div class="portal-card-header" style="flex-wrap: wrap; gap: 16px;">
+        <h2 class="portal-card-title">Client Staffing Requests</h2>
+        
+        <div class="portal-header-actions" style="display: flex; gap: 12px; align-items: center;">
+            <form method="get" class="portal-form-inline">
+                <input type="text" name="q" value="{{ search_query }}" class="portal-form-input" placeholder="Search client, role, organization..." style="width: 250px;">
+                <button type="submit" class="portal-btn portal-btn-secondary portal-btn-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    {% if service_requests %}
+    <div class="portal-table-wrap">
+        <table class="portal-table">
+            <thead>
+                <tr>
+                    <th>Client Name</th>
+                    <th>Contact Info</th>
+                    <th>Role Needed</th>
+                    <th>Category</th>
+                    <th>Timeline</th>
+                    <th>Date Received</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for req in service_requests %}
+                <tr>
+                    <td>
+                        <strong>{{ req.client_name|default:"Not Provided" }}</strong>
+                        {% if req.organization_name %}<br><small style="color: var(--portal-text-muted);">{{ req.organization_name }}</small>{% endif %}
+                    </td>
+                    <td>
+                        <div><a href="mailto:{{ req.client_email }}" style="color: var(--portal-info); text-decoration: none;">{{ req.client_email }}</a></div>
+                        <div><a href="tel:{{ req.client_phone }}" style="color: var(--portal-info); text-decoration: none;">{{ req.client_phone }}</a></div>
+                    </td>
+                    <td>
+                        <strong>{{ req.service_type }}</strong>
+                        <div style="font-size: 0.8em; color: var(--portal-text-muted);">Hires: {{ req.num_hires }} | {{ req.work_arrangement }}</div>
+                    </td>
+                    <td>
+                        <span class="badge badge-neutral">{{ req.staff_category }}</span><br>
+                        <small style="color: var(--portal-text-muted);">{{ req.location }}</small>
+                    </td>
+                    <td>{{ req.timeline }}</td>
+                    <td>{{ req.created_at|date:"M d, Y" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="portal-empty">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <h3>No staffing requests found</h3>
+        <p>No clients have submitted a staffing request yet.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

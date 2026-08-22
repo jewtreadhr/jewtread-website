@@ -1,0 +1,65 @@
+{% extends "portal/base.html" %}
+
+{% block title %}Profile Settings{% endblock %}
+{% block page_title %}Profile Settings{% endblock %}
+
+{% block content %}
+<div class="portal-card" style="max-width: 720px;">
+    <div class="portal-card-header">
+        <h3 class="portal-card-title">Company Profile</h3>
+    </div>
+    <div class="portal-card-body">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="update_profile" value="1">
+
+            <div class="portal-form-group">
+                <label class="portal-form-label" for="username">Username <span class="required">*</span></label>
+                <input type="text" id="username" name="username" class="portal-form-input" value="{{ request.user.username }}" required>
+            </div>
+
+            <div class="portal-form-row">
+                <div class="portal-form-group">
+                    <label class="portal-form-label" for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name" class="portal-form-input" value="{{ request.user.first_name }}">
+                </div>
+                <div class="portal-form-group">
+                    <label class="portal-form-label" for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" class="portal-form-input" value="{{ request.user.last_name }}">
+                </div>
+            </div>
+
+            <div class="portal-form-group">
+                <label class="portal-form-label" for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" class="portal-form-input" value="{{ request.user.email }}" required>
+            </div>
+
+            <div class="portal-form-actions" style="margin-top: 24px;">
+                <button type="submit" class="portal-btn portal-btn-primary">Save Profile</button>
+            </div>
+        </form>
+
+        <hr style="border:0; border-top: 1px solid var(--portal-border); margin: 32px 0;">
+
+        <h4 style="margin-bottom: 20px; font-size: 0.95rem; font-weight: 700; color: var(--portal-text);">Change Password</h4>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="change_password" value="1">
+            
+            {% for field in password_form %}
+            <div class="portal-form-group">
+                <label class="portal-form-label" for="{{ field.id_for_label }}">{{ field.label }} <span class="required">*</span></label>
+                {{ field }}
+                {% if field.errors %}
+                <div style="color: #E53E3E; font-size: 0.85rem; margin-top: 4px;">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <div class="portal-form-actions" style="margin-top: 24px;">
+                <button type="submit" class="portal-btn portal-btn-primary" style="background: var(--text-dark);">Update Password</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

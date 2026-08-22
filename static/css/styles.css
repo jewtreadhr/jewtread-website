@@ -1639,11 +1639,10 @@ h1, h2, h3, h4 { font-weight: 700; }
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    width: 48px;
-    height: 48px;
-    flex: 0 0 48px;
-    background: url('jewtread-logo.png') center / contain no-repeat;
-    font-size: 0;
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--primary-forest);
+    text-decoration: none;
 }
 
 .logo::before {
@@ -1651,12 +1650,14 @@ h1, h2, h3, h4 { font-weight: 700; }
 }
 
 .footer-logo {
-    display: inline-block;
-    width: 54px;
-    height: 54px;
-    background: url('jewtread-logo.png') center / contain no-repeat;
-    font-size: 0;
-    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--bg-white);
+    text-decoration: none;
 }
 
 .logo small {
@@ -1983,7 +1984,7 @@ h1, h2, h3, h4 { font-weight: 700; }
 .auth-tab-btn.active { background: transparent; color: var(--cta-emerald); box-shadow: inset 0 -3px var(--cta-emerald); }
 .btn-social { border-radius: 3px; border-color: #b9c8bb; }
 
-.footer { border-top: 1px solid var(--line); background: var(--surface); padding: 28px 0; }
+.footer { border-top: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 28px 0; }
 .footer-content { min-height: 0; }
 .footer p { font-size: 0.8rem; }
 
@@ -1996,6 +1997,7 @@ h1, h2, h3, h4 { font-weight: 700; }
 }
 
 .footer-brand p { max-width: 310px; margin: 14px 0 0; color: #607365; font-size: 0.86rem; }
+.footer-brand .footer-contact { line-height: 1.55; }
 .footer-links { display: flex; flex-direction: column; align-items: flex-start; gap: 9px; }
 .footer-links h3 { margin-bottom: 4px; font-size: 0.88rem; color: var(--primary-forest); }
 .footer-links a { color: #607365; font-size: 0.84rem; text-decoration: none; position: relative; padding-bottom: 2px; }
@@ -4499,3 +4501,47 @@ button, .btn, .tbl-btn, .save-job, .tab-btn, .nav-dropdown-toggle,
     }
 }
 
+
+.logo .brand-word,
+.footer-logo .brand-word,
+.sidebar-brand-text .brand-word {
+    color: var(--primary-forest) !important;
+    display: inline-block;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.footer-logo .brand-word {
+    font-size: 1.35rem;
+}
+
+.logo,
+.footer-logo {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: auto !important;
+    height: auto !important;
+    flex-basis: auto !important;
+    background: none !important;
+    color: var(--primary-forest) !important;
+    text-decoration: none;
+}
+
+.logo img,
+.footer-logo img {
+    display: block;
+    flex: 0 0 auto;
+}
+
+.logo .brand-word,
+.footer-logo .brand-word,
+.sidebar-brand-text .brand-word {
+    color: var(--primary-forest) !important;
+    display: inline-block;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0;
+    white-space: nowrap;
+}

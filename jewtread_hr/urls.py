@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('jewtread-secure-admin/', admin.site.urls),  # Secret admin URL
+    path('admin/', lambda request: redirect('core:index')),  # Honeypot/redirect for public 'admin' access
+    path('admin-portal-secure/', include('portal.urls')),
     path('jobs/', include('jobs.urls')),
     path('services/', include('services.urls')),
     path('', include('users.urls')),

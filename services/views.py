@@ -4,17 +4,18 @@ from .models import ServiceRequest
 
 def hire_professional(request):
     if request.method == 'POST':
-        service_type = request.POST.get('service_type')
-        details = request.POST.get('details')
-        budget_range = request.POST.get('budget_range', '')
-        
-        client = request.user if request.user.is_authenticated else None
-        
         ServiceRequest.objects.create(
-            client=client,
-            service_type=service_type,
-            details=details,
-            budget_range=budget_range
+            staff_category=request.POST.get('staffCategory', ''),
+            service_type=request.POST.get('service_type', ''),
+            num_hires=request.POST.get('numHires', ''),
+            work_arrangement=request.POST.get('workArrangement', ''),
+            location=request.POST.get('placementLocation', ''),
+            timeline=request.POST.get('targetStartDate', ''),
+            client_name=request.POST.get('clientName', ''),
+            organization_name=request.POST.get('organizationName', ''),
+            client_email=request.POST.get('clientEmail', ''),
+            client_phone=request.POST.get('clientPhone', ''),
+            details=request.POST.get('details', '')
         )
         
         messages.success(request, 'Your service request has been submitted successfully.')

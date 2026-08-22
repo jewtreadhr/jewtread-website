@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'jobs',
     'services',
     'core',
+    'portal',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,6 @@ AUTH_USER_MODEL = 'users.User'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = 'users:jobseeker_dashboard'

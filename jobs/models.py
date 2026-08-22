@@ -21,7 +21,7 @@ class JobPosting(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return f"{self.title} at {self.employer.employer_profile.company_name}"
+        return f"{self.title}"
 
 class Application(models.Model):
     STATUS_CHOICES = (

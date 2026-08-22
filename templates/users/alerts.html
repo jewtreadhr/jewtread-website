@@ -17,10 +17,8 @@
     <!-- Shared Navigation -->
     <header class="navbar">
         <div class="container nav-container">
-            <a href="{% url 'core:index' %}" class="logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;">Jewtread<span>HR</span></a>
+            <a href="{% url 'core:index' %}" class="logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;"><span class="brand-word">Jewtreadhr</span></a>
             <nav class="nav-menu" id="nav-menu">
-                <a href="{% url 'users:jobseeker_dashboard' %}">My dashboard</a>
-                <a href="{% url 'jobs:list' %}">Explore roles</a>
                 <a href="#">My applications</a>
                 <div class="nav-dropdown" id="profile-dropdown">
                     <button type="button" class="nav-dropdown-toggle" id="profile-dropdown-btn" aria-expanded="false" aria-haspopup="true">
@@ -29,7 +27,7 @@
                         <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
                     </button>
                     <div class="nav-dropdown-menu" id="profile-dropdown-menu">
-                        <a href="{% url 'users:profile' %}" class="dropdown-item">
+                        <a href="{% url 'users:upload_cv' %}" class="dropdown-item">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 4-4H8a4 4 0 0 4-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                             Profile and CV
                         </a>
@@ -45,7 +43,6 @@
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
                             Alerts
                         </a>
-                        <a href="job-seeker-dashboard.html#profile" class="dropdown-item">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                             Account
                         </a>
@@ -155,34 +152,38 @@
     </main>
 
     <!-- Shared Footer -->
-    <footer class="footer">
-        <div class="container footer-main">
-            <div class="footer-brand">
-                <a href="{% url 'core:index' %}" class="footer-logo"><img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px;">Jewtread<span>HR</span></a>
-                <p>Connecting dependable professionals with households and businesses across Nigeria.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Job seekers</h3>
-                <a href="{% url 'users:jobseeker_dashboard' %}">My dashboard</a>
-                <a href="{% url 'jobs:list' %}">Explore roles</a>
-                <a href="#">Job alerts</a>
-            </div>
-            <div class="footer-links">
-                <h3>Employers</h3>
-                <a href="{% url 'services:hire' %}">Hire a professional</a>
-                <a href="{% url 'core:services' %}#corporate">Find talent</a>
-                <a href="{% url 'core:contact' %}">Contact our team</a>
-            </div>
-            <div class="footer-links">
-                <h3>Jewtread HR</h3>
-                <a href="{% url 'core:about' %}">About us</a>
-                <a href="{% url 'core:services' %}">Our services</a>
-            </div>
+        <footer class="footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a href="{% url 'core:index' %}" class="footer-logo">
+            <img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px" /><span class="brand-word">Jewtreadhr</span>
+          </a>
+          <p>Connecting dependable professionals with households and businesses across Nigeria.</p>
+          <p class="footer-contact">Ocean Centre Plot 1018, Cadastral Zone B18 Off Oladipo Diya Road, Gudu District, Abuja<br>Tel: 07047577145</p>
         </div>
-        <div class="container footer-bottom">
-            <p>&copy; 2026 Jewtread HR. All Rights Reserved.</p>
-            <p>Building Better Homes and Stronger Businesses.</p>
+        <div class="footer-links">
+          <h3>Job seekers</h3>
+          <a href="{% url 'users:upload_cv' %}">Upload CV</a>
+          <a href="{% url 'core:contact' %}">Get support</a>
         </div>
+        <div class="footer-links">
+          <h3>Employers</h3>
+          <a href="{% url 'services:hire' %}">Hire a professional</a>
+          <a href="{% url 'core:services' %}#corporate">Find talent</a>
+          <a href="{% url 'core:contact' %}">Contact our team</a>
+        </div>
+        <div class="footer-links">
+          <h3>Jewtreadhr</h3>
+          <a href="{% url 'core:about' %}">About us</a>
+          <a href="{% url 'core:services' %}">Our services</a>
+          <a href="{% url 'core:privacy' %}">Privacy Policy</a>
+          <a href="{% url 'core:terms' %}">Terms & Conditions</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>&copy; 2026 Jewtreadhr. All Rights Reserved.</p>
+        <p>Building Better Homes and Stronger Businesses.</p>
+      </div>
     </footer>
 
     <script src="{% static 'js/script.js' %}"></script>

@@ -1,0 +1,97 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms & Conditions | Jewtread HR</title>
+    <link rel="icon" type="image/png" href="{% static 'images/jewtread-logo.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container nav-container">
+        <a href="{% url 'core:index' %}" class="logo">
+          <img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px" /><span class="brand-word">Jewtreadhr</span>
+        </a>
+        <nav class="nav-menu" id="nav-menu">
+          <a href="{% url 'core:services' %}">Services</a>
+          <a href="{% url 'core:about' %}">About Us</a>
+          <a href="{% url 'core:contact' %}">Contact Us</a>
+          <a href="{% url 'services:hire' %}" class="nav-link-signin">Hire a Professional</a>
+          <a href="{% url 'users:upload_cv' %}" class="btn btn-secondary">Upload CV</a>
+        </nav>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </header>
+
+    <section class="page-banner" style="background-color: var(--surface-color); color: var(--text-dark); border-bottom: 1px solid var(--border-color); padding: 60px 0;">
+      <div class="container">
+        <h1 style="color: var(--primary-color);">Terms & Conditions</h1>
+        <p>Effective Date: August 2026</p>
+      </div>
+    </section>
+
+    <section class="about-page-content" style="padding-top: 60px; padding-bottom: 80px;">
+      <div class="container" style="max-width: 800px; line-height: 1.8; color: var(--text-body);">
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">1. Agreement to Terms</h2>
+        <p style="margin-bottom: 24px;">By accessing our website and using our services, you agree to be bound by these Terms and Conditions and our Privacy Policy. If you do not agree with any part of these terms, you may not use our services.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">2. Services Description</h2>
+        <p style="margin-bottom: 24px;">Jewtread HR provides recruitment, staffing, and workforce outsourcing services. We connect employers with pre-screened talent across domestic and corporate sectors.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">3. User Responsibilities</h2>
+        <p style="margin-bottom: 24px;">You are responsible for ensuring that the information you provide us is accurate, complete, and current at all times. Inaccurate information may result in the termination of our services to you.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">4. Intellectual Property</h2>
+        <p style="margin-bottom: 24px;">The Service and its original content, features, and functionality are and will remain the exclusive property of Jewtread HR and its licensors. The Service is protected by copyright, trademark, and other laws.</p>
+        
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">5. Contact Us</h2>
+        <p style="margin-bottom: 24px;">If you have any questions about these Terms, please contact us at info@jewtreadhr.com.</p>
+      </div>
+    </section>
+
+        <footer class="footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a href="{% url 'core:index' %}" class="footer-logo">
+            <img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px" /><span class="brand-word">Jewtreadhr</span>
+          </a>
+          <p>Connecting dependable professionals with households and businesses across Nigeria.</p>
+          <p class="footer-contact">Ocean Centre Plot 1018, Cadastral Zone B18 Off Oladipo Diya Road, Gudu District, Abuja<br>Tel: 07047577145</p>
+        </div>
+        <div class="footer-links">
+          <h3>Job seekers</h3>
+          <a href="{% url 'users:upload_cv' %}">Upload CV</a>
+          <a href="{% url 'core:contact' %}">Get support</a>
+        </div>
+        <div class="footer-links">
+          <h3>Employers</h3>
+          <a href="{% url 'services:hire' %}">Hire a professional</a>
+          <a href="{% url 'core:services' %}#corporate">Find talent</a>
+          <a href="{% url 'core:contact' %}">Contact our team</a>
+        </div>
+        <div class="footer-links">
+          <h3>Jewtreadhr</h3>
+          <a href="{% url 'core:about' %}">About us</a>
+          <a href="{% url 'core:services' %}">Our services</a>
+          <a href="{% url 'core:privacy' %}">Privacy Policy</a>
+          <a href="{% url 'core:terms' %}">Terms & Conditions</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>&copy; 2026 Jewtreadhr. All Rights Reserved.</p>
+        <p>Building Better Homes and Stronger Businesses.</p>
+      </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>
