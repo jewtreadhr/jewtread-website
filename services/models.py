@@ -23,3 +23,4 @@ class ServiceRequest(models.Model):
     
     def __str__(self):
         return f"{self.service_type} for {self.client_name or 'Unknown Client'}"
+
