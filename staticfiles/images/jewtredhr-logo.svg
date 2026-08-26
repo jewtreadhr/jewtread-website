@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 132" role="img" aria-labelledby="title desc">
+  <title id="title">Jewtredhr logo</title>
+  <desc id="desc">A premium forest-green and champagne-gold logo for Jewtredhr.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E1C99D"/>
+      <stop offset="1" stop-color="#B88D54"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(10 10)">
+    <path d="M56 0 100 25v50l-44 25L12 75V25Z" fill="#0D2E1F"/>
+    <path d="M56 18 82 33v30L56 78 30 63V33Z" fill="none" stroke="url(#gold)" stroke-width="5"/>
+    <path d="M38 59c5-13 10-19 18-19 8 0 13 6 18 19" fill="none" stroke="#FAF9F6" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="56" cy="31" r="8" fill="#FAF9F6"/>
+    <path d="M31 82 49 91 81 73" fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="130" y="72" fill="#0D2E1F" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="-2">Jewtred</text>
+  <text x="346" y="72" fill="url(#gold)" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="-2">hr</text>
+  <text x="134" y="101" fill="#5F7A61" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="4">TALENT • TRUST • GROWTH</text>
+</svg>
