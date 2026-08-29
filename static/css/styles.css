@@ -2353,6 +2353,9 @@ h1, h2, h3, h4 { font-weight: 700; }
 
 .file-dropzone input[type="file"] {
     display: none;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
 
 .file-dropzone .dropzone-icon {

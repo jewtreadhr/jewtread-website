@@ -6,6 +6,8 @@ from django.http import HttpResponseForbidden
 from functools import wraps
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from .forms import ProfileUpdateForm
+from django.utils.http import url_has_allowed_host_and_scheme
 
 from users.models import TalentPoolCandidate
 from services.models import ServiceRequest
@@ -25,6 +27,27 @@ def admin_required(view_func):
 # ==========================================
 # AUTH
 # ==========================================
+# def portal_login(request):
+#     if request.user.is_authenticated and (request.user.role == 'ADMIN' or request.user.is_superuser):
+#         return redirect('portal:dashboard')
+
+#     if request.method == 'POST':
+#         username = request.POST.get('username', '').strip()
+#         password = request.POST.get('password', '')
+#         user = authenticate(request, username=username, password=password)
+
+#         if user is not None:
+#             if user.role != 'ADMIN' and not user.is_superuser:
+#                 messages.error(request, 'Only admin accounts can access the portal.')
+#             else:
+#                 login(request, user)
+#                 next_url = request.GET.get('next', 'portal:dashboard')
+#                 return redirect(next_url)
+#         else:
+#             messages.error(request, 'Invalid username or password.')
+
+#     return render(request, 'portal/login.html')
+
 def portal_login(request):
     if request.user.is_authenticated and (request.user.role == 'ADMIN' or request.user.is_superuser):
         return redirect('portal:dashboard')
@@ -39,13 +62,17 @@ def portal_login(request):
                 messages.error(request, 'Only admin accounts can access the portal.')
             else:
                 login(request, user)
-                next_url = request.GET.get('next', 'portal:dashboard')
-                return redirect(next_url)
+
+                next_url = request.GET.get('next')
+                if next_url and url_has_allowed_host_and_scheme(
+                    next_url, allowed_hosts={request.get_host()}, require_https=request.is_secure()
+                ):
+                    return redirect(next_url)
+                return redirect('portal:dashboard')
         else:
             messages.error(request, 'Invalid username or password.')
 
     return render(request, 'portal/login.html')
-
 
 @login_required(login_url='portal:login')
 def portal_logout(request):
@@ -152,24 +179,23 @@ def service_request_list(request):
 @admin_required
 def profile_settings(request):
     password_form = PasswordChangeForm(request.user)
-    
+    profile_form = ProfileUpdateForm(instance=request.user)
+
     if request.method == 'POST':
         if 'update_profile' in request.POST:
-            # Update user fields
-            request.user.username = request.POST.get('username', '').strip()
-            request.user.first_name = request.POST.get('first_name', '').strip()
-            request.user.last_name = request.POST.get('last_name', '').strip()
-            request.user.email = request.POST.get('email', '').strip()
-            request.user.save()
+            profile_form = ProfileUpdateForm(request.POST, instance=request.user)
+            if profile_form.is_valid():
+                profile_form.save()
+                messages.success(request, 'Profile updated successfully.')
+                return redirect('portal:profile')
+            else:
+                messages.error(request, 'Please correct the errors below.')
 
-            messages.success(request, 'Profile updated successfully.')
-            return redirect('portal:profile')
-            
         elif 'change_password' in request.POST:
             password_form = PasswordChangeForm(request.user, request.POST)
             if password_form.is_valid():
                 user = password_form.save()
-                update_session_auth_hash(request, user)  # Keep user logged in
+                update_session_auth_hash(request, user)
                 messages.success(request, 'Password updated successfully.')
                 return redirect('portal:profile')
             else:
@@ -177,5 +203,6 @@ def profile_settings(request):
 
     return render(request, 'portal/profile.html', {
         'password_form': password_form,
+        'profile_form': profile_form,
         'active_page': 'profile',
     })

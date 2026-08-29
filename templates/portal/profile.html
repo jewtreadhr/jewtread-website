@@ -14,24 +14,36 @@
             <input type="hidden" name="update_profile" value="1">
 
             <div class="portal-form-group">
-                <label class="portal-form-label" for="username">Username <span class="required">*</span></label>
-                <input type="text" id="username" name="username" class="portal-form-input" value="{{ request.user.username }}" required>
+                <label class="portal-form-label" for="{{ profile_form.username.id_for_label }}">Username <span class="required">*</span></label>
+                {{ profile_form.username }}
+                {% if profile_form.username.errors %}
+                <div style="color: #E53E3E; font-size: 0.85rem; margin-top: 4px;">{{ profile_form.username.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="portal-form-row">
                 <div class="portal-form-group">
-                    <label class="portal-form-label" for="first_name">First Name</label>
-                    <input type="text" id="first_name" name="first_name" class="portal-form-input" value="{{ request.user.first_name }}">
+                    <label class="portal-form-label" for="{{ profile_form.first_name.id_for_label }}">First Name</label>
+                    {{ profile_form.first_name }}
+                    {% if profile_form.first_name.errors %}
+                    <div style="color: #E53E3E; font-size: 0.85rem; margin-top: 4px;">{{ profile_form.first_name.errors }}</div>
+                    {% endif %}
                 </div>
                 <div class="portal-form-group">
-                    <label class="portal-form-label" for="last_name">Last Name</label>
-                    <input type="text" id="last_name" name="last_name" class="portal-form-input" value="{{ request.user.last_name }}">
+                    <label class="portal-form-label" for="{{ profile_form.last_name.id_for_label }}">Last Name</label>
+                    {{ profile_form.last_name }}
+                    {% if profile_form.last_name.errors %}
+                    <div style="color: #E53E3E; font-size: 0.85rem; margin-top: 4px;">{{ profile_form.last_name.errors }}</div>
+                    {% endif %}
                 </div>
             </div>
 
             <div class="portal-form-group">
-                <label class="portal-form-label" for="email">Email Address <span class="required">*</span></label>
-                <input type="email" id="email" name="email" class="portal-form-input" value="{{ request.user.email }}" required>
+                <label class="portal-form-label" for="{{ profile_form.email.id_for_label }}">Email Address <span class="required">*</span></label>
+                {{ profile_form.email }}
+                {% if profile_form.email.errors %}
+                <div style="color: #E53E3E; font-size: 0.85rem; margin-top: 4px;">{{ profile_form.email.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="portal-form-actions" style="margin-top: 24px;">
@@ -57,7 +69,7 @@
             {% endfor %}
 
             <div class="portal-form-actions" style="margin-top: 24px;">
-                <button type="submit" class="portal-btn portal-btn-primary" style="background: var(--text-dark);">Update Password</button>
+                <button type="submit" class="portal-btn portal-btn-primary">Update Password</button>
             </div>
         </form>
     </div>
