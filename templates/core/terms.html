@@ -1,4 +1,4 @@
-{% load static %}
+{% comment %} {% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -55,6 +55,134 @@
         
         <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">5. Contact Us</h2>
         <p style="margin-bottom: 24px;">If you have any questions about these Terms, please contact us at info@jewtreadhr.com.</p>
+      </div>
+    </section>
+
+        <footer class="footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a href="{% url 'core:index' %}" class="footer-logo">
+            <img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px" /><span class="brand-word">Jewtreadhr</span>
+          </a>
+          <p>Connecting dependable professionals with households and businesses across Nigeria.</p>
+          <p class="footer-contact">Ocean Centre Plot 1018, Cadastral Zone B18 Off Oladipo Diya Road, Gudu District, Abuja<br>Tel: 07047577145</p>
+        </div>
+        <div class="footer-links">
+          <h3>Job seekers</h3>
+          <a href="{% url 'users:upload_cv' %}">Upload CV</a>
+          <a href="{% url 'core:contact' %}">Get support</a>
+        </div>
+        <div class="footer-links">
+          <h3>Employers</h3>
+          <a href="{% url 'services:hire' %}">Hire a professional</a>
+          <a href="{% url 'core:services' %}#corporate">Find talent</a>
+          <a href="{% url 'core:contact' %}">Contact our team</a>
+        </div>
+        <div class="footer-links">
+          <h3>Jewtreadhr</h3>
+          <a href="{% url 'core:about' %}">About us</a>
+          <a href="{% url 'core:services' %}">Our services</a>
+          <a href="{% url 'core:privacy' %}">Privacy Policy</a>
+          <a href="{% url 'core:terms' %}">Terms & Conditions</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>&copy; 2026 Jewtreadhr. All Rights Reserved.</p>
+        <p>Building Better Homes and Stronger Businesses.</p>
+      </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html> {% endcomment %}
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms & Conditions | Jewtread HR</title>
+    <link rel="icon" type="image/png" href="{% static 'images/jewtread-logo.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container nav-container">
+        <a href="{% url 'core:index' %}" class="logo">
+          <img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px" /><span class="brand-word">Jewtreadhr</span>
+        </a>
+        <nav class="nav-menu" id="nav-menu">
+          <a href="{% url 'core:services' %}">Services</a>
+          <a href="{% url 'core:about' %}">About Us</a>
+          <a href="{% url 'core:contact' %}">Contact Us</a>
+          <a href="{% url 'services:hire' %}" class="nav-link-signin">Hire a Professional</a>
+          <a href="{% url 'users:upload_cv' %}" class="btn btn-secondary">Upload CV</a>
+        </nav>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </header>
+
+    <section class="page-banner" style="background-color: var(--surface-color); color: var(--text-dark); border-bottom: 1px solid var(--border-color); padding: 60px 0;">
+      <div class="container">
+        <h1 style="color: var(--primary-color);">Terms & Conditions</h1>
+        <p>Effective Date: August 2026</p>
+      </div>
+    </section>
+
+    <section class="about-page-content" style="padding-top: 60px; padding-bottom: 80px;">
+      <div class="container" style="max-width: 800px; line-height: 1.8; color: var(--text-body);">
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">1. Agreement to Terms</h2>
+        <p style="margin-bottom: 24px;">These Terms and Conditions ("Terms") govern your access to and use of the Jewtread HR website and services. By accessing our website, submitting a CV, or submitting a staffing request, you agree to be bound by these Terms and our Privacy Policy. If you do not agree with any part of these Terms, please discontinue use of our website and services.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">2. Services Description</h2>
+        <p style="margin-bottom: 24px;">Jewtread HR provides recruitment, staffing, and workforce outsourcing services, connecting employers and households with pre-screened domestic staff and corporate professionals across Nigeria. Our services include candidate sourcing, screening, shortlisting, and placement support. Jewtread HR acts as an intermediary between job seekers and employers; we do not guarantee employment outcomes, and final hiring decisions rest with the employer.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">3. Eligibility</h2>
+        <p style="margin-bottom: 24px;">Our services are intended for individuals aged 18 and above. By submitting a CV or a staffing request, you confirm that you are at least 18 years old and that you have the authority to provide the information submitted, including on behalf of an organisation where applicable.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">4. User Responsibilities</h2>
+        <p style="margin-bottom: 16px;">When using our website and services, you agree to:</p>
+        <ul style="margin-bottom: 24px; padding-left: 20px;">
+          <li style="margin-bottom: 8px;">Provide accurate, complete, and current information in your CV, staffing request, or any other form submitted to us.</li>
+          <li style="margin-bottom: 8px;">Promptly notify us of any material changes to the information you have provided.</li>
+          <li style="margin-bottom: 8px;">Not misrepresent your identity, qualifications, or the nature of a staffing request.</li>
+          <li style="margin-bottom: 8px;">Use our website only for lawful purposes and not to transmit harmful, offensive, or fraudulent content.</li>
+        </ul>
+        <p style="margin-bottom: 24px;">Inaccurate or misleading information may result in the discontinuation of our services to you and, where relevant, removal from our talent pool.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">5. Placement Services and Fees</h2>
+        <p style="margin-bottom: 24px;">Where applicable, fees for our recruitment and placement services will be communicated separately and agreed with the employer prior to commencement of a placement, typically via a service agreement or quotation. Any replacement guarantee offered is subject to the specific terms communicated at the time of placement and does not apply where termination results from misconduct, breach of contract by the employer, or circumstances outside our reasonable control.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">6. No Guarantee of Outcomes</h2>
+        <p style="margin-bottom: 24px;">While we take care to screen and match candidates to the best of our ability, Jewtread HR does not guarantee that any job seeker will be placed in a role, or that any employer will find a suitable candidate within a specific timeframe. Screening and background checks are conducted using reasonable, industry-standard efforts, but Jewtread HR cannot guarantee the complete accuracy of information provided by third parties, including candidates, guarantors, and referees.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">7. Intellectual Property</h2>
+        <p style="margin-bottom: 24px;">The website and its original content, features, design, and functionality are and will remain the exclusive property of Jewtread HR and its licensors, and are protected by applicable copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, or create derivative works from any part of this website without our prior written consent.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">8. Limitation of Liability</h2>
+        <p style="margin-bottom: 24px;">To the fullest extent permitted by law, Jewtread HR shall not be liable for any indirect, incidental, or consequential damages arising from your use of our website or services, including but not limited to loss of income, loss of employment opportunity, or damages arising from the conduct of a placed candidate or engaging employer. Our total liability in connection with any claim arising from our services shall not exceed the fees paid to us in connection with the specific placement giving rise to the claim.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">9. Termination</h2>
+        <p style="margin-bottom: 24px;">We reserve the right to suspend or discontinue your access to our services at our discretion, including where we reasonably believe you have provided false information, violated these Terms, or engaged in conduct that is harmful to Jewtread HR, other users, or third parties.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">10. Changes to These Terms</h2>
+        <p style="margin-bottom: 24px;">We may revise these Terms from time to time. The updated version will be posted on this page with a revised effective date. Continued use of our website or services after changes are posted constitutes acceptance of the revised Terms.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">11. Governing Law</h2>
+        <p style="margin-bottom: 24px;">These Terms shall be governed by and construed in accordance with the laws of the Federal Republic of Nigeria, without regard to its conflict of law provisions.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">12. Contact Us</h2>
+        <p style="margin-bottom: 24px;">If you have any questions about these Terms, please contact us at <a href="mailto:info@jewtreadhr.com" style="color: var(--primary-color); font-weight: 600;">info@jewtreadhr.com</a> or call <strong>07047577145</strong>. Our office is located at Ocean Centre Plot 1018, Cadastral Zone B18, Off Oladipo Diya Road, Gudu District, Abuja.</p>
+
       </div>
     </section>
 

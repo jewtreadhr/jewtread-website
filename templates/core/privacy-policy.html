@@ -1,4 +1,4 @@
-{% load static %}
+{% comment %} {% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -63,6 +63,153 @@
 
         <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">4. Data Security</h2>
         <p style="margin-bottom: 24px;">We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used or accessed in an unauthorised way, altered or disclosed. In addition, we limit access to your personal data to those employees, agents, contractors and other third parties who have a business need to know.</p>
+      </div>
+    </section>
+
+        <footer class="footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a href="{% url 'core:index' %}" class="footer-logo">
+            <img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px" /><span class="brand-word">Jewtreadhr</span>
+          </a>
+          <p>Connecting dependable professionals with households and businesses across Nigeria.</p>
+          <p class="footer-contact">Ocean Centre Plot 1018, Cadastral Zone B18 Off Oladipo Diya Road, Gudu District, Abuja<br>Tel: 07047577145</p>
+        </div>
+        <div class="footer-links">
+          <h3>Job seekers</h3>
+          <a href="{% url 'users:upload_cv' %}">Upload CV</a>
+          <a href="{% url 'core:contact' %}">Get support</a>
+        </div>
+        <div class="footer-links">
+          <h3>Employers</h3>
+          <a href="{% url 'services:hire' %}">Hire a professional</a>
+          <a href="{% url 'core:services' %}#corporate">Find talent</a>
+          <a href="{% url 'core:contact' %}">Contact our team</a>
+        </div>
+        <div class="footer-links">
+          <h3>Jewtreadhr</h3>
+          <a href="{% url 'core:about' %}">About us</a>
+          <a href="{% url 'core:services' %}">Our services</a>
+          <a href="{% url 'core:privacy' %}">Privacy Policy</a>
+          <a href="{% url 'core:terms' %}">Terms & Conditions</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>&copy; 2026 Jewtreadhr. All Rights Reserved.</p>
+        <p>Building Better Homes and Stronger Businesses.</p>
+      </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html> {% endcomment %}
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy | Jewtread HR</title>
+    <link rel="icon" type="image/png" href="{% static 'images/jewtread-logo.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container nav-container">
+        <a href="{% url 'core:index' %}" class="logo">
+          <img src="{% static 'images/jewtread-logo.png' %}" alt="Jewtread HR Logo" style="height: 40px" /><span class="brand-word">Jewtreadhr</span>
+        </a>
+        <nav class="nav-menu" id="nav-menu">
+          <a href="{% url 'core:services' %}">Services</a>
+          <a href="{% url 'core:about' %}">About Us</a>
+          <a href="{% url 'core:contact' %}">Contact Us</a>
+          <a href="{% url 'services:hire' %}" class="nav-link-signin">Hire a Professional</a>
+          <a href="{% url 'users:upload_cv' %}" class="btn btn-secondary">Upload CV</a>
+        </nav>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </header>
+
+    <section class="page-banner" style="background-color: var(--surface-color); color: var(--text-dark); border-bottom: 1px solid var(--border-color); padding: 60px 0;">
+      <div class="container">
+        <h1 style="color: var(--primary-color);">Privacy Policy</h1>
+        <p>Effective Date: August 2026</p>
+      </div>
+    </section>
+
+    <section class="about-page-content" style="padding-top: 60px; padding-bottom: 80px;">
+      <div class="container" style="max-width: 800px; line-height: 1.8; color: var(--text-body);">
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">1. Introduction</h2>
+        <p style="margin-bottom: 24px;">Jewtread HR ("we", "us", "our") provides recruitment, staffing, and workforce outsourcing services connecting employers with domestic and corporate talent across Nigeria. We are committed to protecting the privacy and personal data of everyone who uses our website and services -- job seekers, employers, and general visitors alike. This Privacy Policy explains what personal data we collect, why we collect it, how we use and protect it, and the rights you have over it, in line with the Nigeria Data Protection Act 2023 (NDPA) and the Nigeria Data Protection Regulation (NDPR).</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">2. Data We Collect</h2>
+        <p style="margin-bottom: 16px;">We collect different categories of personal data depending on how you interact with us:</p>
+        <ul style="margin-bottom: 24px; padding-left: 20px;">
+          <li style="margin-bottom: 8px;"><strong>Identity Data:</strong> full name and any identifying details you provide on forms (e.g. staffing requests, CV uploads).</li>
+          <li style="margin-bottom: 8px;"><strong>Contact Data:</strong> email address, phone/WhatsApp number, and postal or business address where provided.</li>
+          <li style="margin-bottom: 8px;"><strong>Professional Data (Job Seekers):</strong> CVs, employment history, skills, professional bio, and references submitted through our Upload CV or application forms.</li>
+          <li style="margin-bottom: 8px;"><strong>Staffing Request Data (Employers):</strong> the role, staffing category, location, timeline, and any details you provide about the position you are hiring for, along with your organisation or household name.</li>
+          <li style="margin-bottom: 8px;"><strong>Technical Data:</strong> IP address, browser type and version, device information, and general usage data collected automatically when you visit our website.</li>
+          <li style="margin-bottom: 8px;"><strong>Communications Data:</strong> the content of any messages, enquiries, or correspondence you send us through our contact forms, email, or phone.</li>
+        </ul>
+        <p style="margin-bottom: 24px;">We do not knowingly collect sensitive personal data (such as health information, religious beliefs, or biometric data) unless you voluntarily provide it as part of a CV or staffing request, in which case it is treated with additional care and used only for the specific recruitment purpose you provided it for.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">3. How We Use Your Data</h2>
+        <p style="margin-bottom: 16px;">We only use your personal data where we have a lawful basis to do so. This includes:</p>
+        <ul style="margin-bottom: 24px; padding-left: 20px;">
+          <li style="margin-bottom: 8px;">To match job seekers with suitable placement opportunities and maintain our talent pool.</li>
+          <li style="margin-bottom: 8px;">To process and respond to staffing requests submitted by employers.</li>
+          <li style="margin-bottom: 8px;">To communicate with you about your CV, application, staffing request, or general enquiry.</li>
+          <li style="margin-bottom: 8px;">To carry out screening, verification, and background-check processes as part of our placement services, with your knowledge and, where required, your consent.</li>
+          <li style="margin-bottom: 8px;">To improve our website and services, and to maintain the security of our systems.</li>
+          <li style="margin-bottom: 8px;">To comply with our legal and regulatory obligations.</li>
+        </ul>
+        <p style="margin-bottom: 24px;">We do not sell your personal data to third parties. We do not use your data for purposes unrelated to recruitment, staffing, and the operation of this website without first seeking your consent.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">4. Who We Share Your Data With</h2>
+        <p style="margin-bottom: 16px;">We may share your personal data with:</p>
+        <ul style="margin-bottom: 24px; padding-left: 20px;">
+          <li style="margin-bottom: 8px;"><strong>Prospective employers or households</strong>, where you are a job seeker and your profile is being considered for a specific role -- we will only share what is reasonably necessary for that purpose.</li>
+          <li style="margin-bottom: 8px;"><strong>Service providers</strong> who support our operations, such as hosting providers, email delivery services, and background-verification partners, under confidentiality obligations.</li>
+          <li style="margin-bottom: 8px;"><strong>Regulatory or law enforcement bodies</strong>, where we are legally required to disclose information.</li>
+        </ul>
+        <p style="margin-bottom: 24px;">We do not share your data with third parties for their own independent marketing purposes.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">5. Data Retention</h2>
+        <p style="margin-bottom: 24px;">We retain personal data only for as long as necessary to fulfil the purposes for which it was collected, including satisfying any legal, accounting, or reporting requirements. CVs and talent pool profiles are retained for as long as you remain an active candidate in our system, or until you request their deletion. You may ask us to delete your data at any time, subject to any legal obligation we may have to retain certain records.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">6. Data Security</h2>
+        <p style="margin-bottom: 24px;">We have put in place appropriate technical and organisational measures to protect your personal data from accidental loss, unauthorised access, alteration, or disclosure. Access to your personal data is limited to employees, agents, contractors, and partners who have a genuine business need to access it, and who are subject to confidentiality obligations. While we take reasonable steps to protect your data, no method of transmission over the internet or electronic storage is entirely secure, and we cannot guarantee absolute security.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">7. Your Rights</h2>
+        <p style="margin-bottom: 16px;">Under applicable Nigerian data protection law, you have the right to:</p>
+        <ul style="margin-bottom: 24px; padding-left: 20px;">
+          <li style="margin-bottom: 8px;">Request access to the personal data we hold about you.</li>
+          <li style="margin-bottom: 8px;">Request correction of inaccurate or incomplete data.</li>
+          <li style="margin-bottom: 8px;">Request deletion of your personal data, subject to legal or contractual limitations.</li>
+          <li style="margin-bottom: 8px;">Withdraw any consent you have previously given, where our use of your data is based on consent.</li>
+          <li style="margin-bottom: 8px;">Object to certain uses of your data, or request that we restrict how it is processed.</li>
+        </ul>
+        <p style="margin-bottom: 24px;">To exercise any of these rights, please contact us using the details below. We will respond within a reasonable timeframe and in accordance with applicable law.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">8. Cookies and Website Usage Data</h2>
+        <p style="margin-bottom: 24px;">Our website may use cookies or similar technologies to support core functionality and understand how visitors use our site. You can control cookies through your browser settings; disabling them may affect certain features of the website.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">9. Changes to This Policy</h2>
+        <p style="margin-bottom: 24px;">We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. The updated version will be posted on this page with a revised effective date. We encourage you to review this page periodically.</p>
+
+        <h2 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-dark);">10. Contact Us</h2>
+        <p style="margin-bottom: 24px;">If you have any questions about this Privacy Policy or how we handle your personal data, please contact us at <a href="mailto:info@jewtreadhr.com" style="color: var(--primary-color); font-weight: 600;">info@jewtreadhr.com</a> or call <strong>07047577145</strong>. Our office is located at Ocean Centre Plot 1018, Cadastral Zone B18, Off Oladipo Diya Road, Gudu District, Abuja.</p>
+
       </div>
     </section>
 
