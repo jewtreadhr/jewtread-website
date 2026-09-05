@@ -2169,17 +2169,46 @@ document.addEventListener('DOMContentLoaded', () => {
         bindSuggestionChips();
     }
 
+    // function bindSuggestionChips() {
+    //     const chips = document.querySelectorAll('.suggestion-chip');
+    //     chips.forEach(chip => {
+    //         chip.addEventListener('click', () => {
+    //             const roleValue = chip.getAttribute('data-role');
+    //             if (roleInput && roleValue) {
+    //                 roleInput.value = roleValue;
+    //                 roleInput.focus();
+    //                 chips.forEach(c => c.classList.remove('active'));
+    //                 chip.classList.add('active');
+    //             }
+    //         });
+    //     });
+    // }
+
     function bindSuggestionChips() {
         const chips = document.querySelectorAll('.suggestion-chip');
         chips.forEach(chip => {
             chip.addEventListener('click', () => {
                 const roleValue = chip.getAttribute('data-role');
-                if (roleInput && roleValue) {
-                    roleInput.value = roleValue;
-                    roleInput.focus();
-                    chips.forEach(c => c.classList.remove('active'));
+                if (!roleInput || !roleValue) return;
+
+                const isActive = chip.classList.contains('active');
+
+                if (isActive) {
+                    // Remove this role from the input
+                    chip.classList.remove('active');
+                    const currentRoles = roleInput.value.split(',').map(r => r.trim()).filter(r => r && r !== roleValue);
+                    roleInput.value = currentRoles.join(', ');
+                } else {
+                    // Add this role to the input
                     chip.classList.add('active');
+                    const currentRoles = roleInput.value.split(',').map(r => r.trim()).filter(r => r);
+                    if (!currentRoles.includes(roleValue)) {
+                        currentRoles.push(roleValue);
+                    }
+                    roleInput.value = currentRoles.join(', ');
                 }
+
+                roleInput.focus();
             });
         });
     }
