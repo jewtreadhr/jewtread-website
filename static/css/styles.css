@@ -4336,6 +4336,114 @@ button, .btn, .tbl-btn, .save-job, .tab-btn, .nav-dropdown-toggle,
 }
 
 /* ==========================================================================
+   About Page - Value Icons
+   ========================================================================== */
+.about-value-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: rgba(19, 90, 55, 0.08);
+    color: var(--cta-emerald);
+    margin-bottom: 18px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+}
+
+.value-card:hover .about-value-icon {
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(19, 90, 55, 0.15);
+}
+
+/* ==========================================================================
+   About Page - Leadership Section
+   ========================================================================== */
+.about-leadership-section {
+    padding: 80px 0;
+    background: var(--bg-white);
+}
+
+.about-leadership-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 48px;
+}
+
+.about-leadership-header h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 12px;
+}
+
+.about-leadership-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+.leadership-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.leadership-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(13, 46, 31, 0.1);
+    border-color: rgba(19, 90, 55, 0.2);
+}
+
+.leadership-card-img {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+}
+
+.leadership-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    transition: transform 0.5s ease;
+}
+
+.leadership-card:hover .leadership-card-img img {
+    transform: scale(1.04);
+}
+
+.leadership-card-body {
+    padding: 32px;
+}
+
+.leadership-card-body h3 {
+    font-size: 1.35rem;
+    color: var(--primary-forest);
+    margin-bottom: 4px;
+}
+
+.leadership-role {
+    display: inline-block;
+    color: var(--cta-emerald);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 18px;
+}
+
+.leadership-card-body p {
+    margin-bottom: 14px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.leadership-card-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
    Contact Page Styles
    ========================================================================== */
 .contact-page-content {
@@ -4459,12 +4567,21 @@ button, .btn, .tbl-btn, .save-job, .tab-btn, .nav-dropdown-toggle,
     .sub-service-grid {
         grid-template-columns: 1fr;
     }
+
+    .about-leadership-grid {
+        gap: 24px;
+    }
+
+    .leadership-card-img {
+        height: 280px;
+    }
 }
 
 @media (max-width: 768px) {
     .hire-grid-layout,
     .contact-wrapper,
     .about-section-grid,
+    .about-leadership-grid,
     .showcase-grid,
     .service-lists {
         grid-template-columns: 1fr;
@@ -4489,6 +4606,7 @@ button, .btn, .tbl-btn, .save-job, .tab-btn, .nav-dropdown-toggle,
     .contact-form-card,
     .contact-info,
     .vision-mission-card,
+    .leadership-card-body,
     .showcase-card {
         padding: 24px 20px;
     }
@@ -4501,6 +4619,10 @@ button, .btn, .tbl-btn, .save-job, .tab-btn, .nav-dropdown-toggle,
     
     .banner-inner .btn {
         width: 100%;
+    }
+
+    .leadership-card-img {
+        height: 240px;
     }
 }
 
