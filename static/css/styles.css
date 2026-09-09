@@ -2025,9 +2025,42 @@ h1, h2, h3, h4 { font-weight: 700; }
     text-transform: uppercase;
 }
 
-.service-directory-section, .about-intro-section, .principles-section, .service-journey-section { padding: 64px 0; }
+.service-directory-section, .about-intro-section, .principles-section, .service-journey-section { padding: 72px 0; }
 .service-directory-section, .about-intro-section { background: var(--surface); }
 .principles-section, .service-journey-section { background: var(--surface-subtle); }
+
+.about-intro-grid { gap: 64px; }
+.about-intro-grid h2 { max-width: 440px; }
+.about-intro-copy p { color: var(--ink); }
+.about-intro-copy .text-link { margin-top: 6px; }
+
+.principles-grid { gap: 20px; }
+.principle-card {
+    position: relative;
+    padding: 28px 26px;
+    border-top: 3px solid var(--cta-emerald);
+    background: var(--surface);
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+    border-radius: 0 0 4px 4px;
+}
+.principle-card > span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 34px;
+    padding: 0 6px;
+    border-radius: 4px;
+    background: #e5efe6;
+    color: var(--cta-emerald);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+}
+.principle-card h3 { margin: 18px 0 8px; font-size: 1.12rem; }
+.principle-card p { margin: 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
 .section-side-copy { max-width: 290px; margin: 0; font-size: 0.9rem; }
 
@@ -4669,4 +4702,217 @@ button, .btn, .tbl-btn, .save-job, .tab-btn, .nav-dropdown-toggle,
     line-height: 1;
     letter-spacing: 0;
     white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   About page refinement: aligns the page with the refreshed editorial feel
+   (sharp cards, forest/gold palette, quiet backgrounds) while keeping the
+   existing structure, tone, and content unchanged.
+   -------------------------------------------------------------------------- */
+.about-page-content {
+    padding: 72px 0;
+    background: var(--surface);
+}
+
+.about-section-grid {
+    gap: 28px;
+}
+
+.vision-mission-card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 36px 34px;
+    box-shadow: none;
+    overflow: hidden;
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.vision-mission-card::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cta-emerald) 0%, var(--accent-gold) 100%);
+    content: '';
+}
+
+.vision-mission-card h2 {
+    font-size: 1.85rem;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+}
+
+.statement-block {
+    padding: 4px 0 0;
+    border-top: 1px solid var(--line);
+}
+
+.statement-block::before,
+.statement-block strong {
+    display: block;
+}
+
+.statement-block strong {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--cta-emerald);
+    margin: 20px 0 8px;
+}
+
+.statement-block p {
+    font-size: 1.02rem;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 0;
+}
+
+.values-section {
+    padding: 72px 0;
+    background: var(--surface-subtle);
+}
+
+.values-section .section-header {
+    text-align: left;
+    max-width: 740px;
+    margin: 0 auto 40px;
+    padding: 0;
+}
+
+.values-section .section-header p {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    max-width: 560px;
+}
+
+.value-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 30px 26px;
+    text-align: left;
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(19, 90, 55, 0.3);
+    box-shadow: 0 10px 22px rgba(13, 46, 31, 0.08);
+}
+
+.about-value-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    background: #e5efe6;
+    color: var(--cta-emerald);
+    margin-bottom: 18px;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.value-card:hover .about-value-icon {
+    transform: translateY(-3px);
+    background: var(--cta-emerald);
+    color: var(--surface);
+}
+
+.value-card h3 {
+    font-size: 1.12rem;
+    margin-bottom: 10px;
+}
+
+.value-card p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.about-leadership-section {
+    padding: 72px 0;
+    background: var(--surface);
+}
+
+.about-leadership-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 48px;
+}
+
+.about-leadership-header h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 12px;
+}
+
+.about-leadership-header p {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+}
+
+.about-leadership-grid {
+    gap: 32px;
+}
+
+.leadership-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.leadership-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(13, 46, 31, 0.1);
+    border-color: rgba(19, 90, 55, 0.25);
+}
+
+.leadership-card-img {
+    height: 300px;
+    border-bottom: 1px solid var(--line);
+}
+
+.leadership-card-body {
+    padding: 30px 30px 32px;
+}
+
+.leadership-card-body h3 {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+}
+
+.leadership-role {
+    display: block;
+    color: var(--cta-emerald);
+    font-weight: 800;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+}
+
+.leadership-card-body p {
+    margin-bottom: 14px;
+    font-size: 0.95rem;
+    line-height: 1.72;
+    color: var(--text-muted);
+}
+
+@media (max-width: 1024px) {
+    .about-leadership-grid { gap: 24px; }
+    .leadership-card-img { height: 280px; }
+}
+
+@media (max-width: 768px) {
+    .about-section-grid,
+    .about-leadership-grid { gap: 24px; }
+    .vision-mission-card,
+    .leadership-card-body { padding: 24px 20px; }
+    .value-card { padding: 26px 20px; }
+    .leadership-card-img { height: 240px; }
 }
