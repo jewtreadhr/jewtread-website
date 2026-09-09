@@ -59,16 +59,16 @@
             <tbody>
                 {% for cv in recent_cvs %}
                 <tr>
-                    <td><strong>{{ cv.full_name }}</strong></td>
-                    <td>{{ cv.email }}</td>
-                    <td>{{ cv.skills|truncatechars:30 }}</td>
-                    <td>
+                    <td data-label="Candidate Name"><strong>{{ cv.full_name }}</strong></td>
+                    <td data-label="Email">{{ cv.email }}</td>
+                    <td data-label="Skills">{{ cv.skills|truncatechars:30 }}</td>
+                    <td data-label="Status">
                         <span class="badge {% if cv.is_reviewed %}badge-success{% else %}badge-warning{% endif %}">
                             {% if cv.is_reviewed %}Reviewed{% else %}Pending{% endif %}
                         </span>
                     </td>
-                    <td>{{ cv.created_at|date:"M d, Y" }}</td>
-                    <td><a href="{% url 'portal:talent_pool_detail' cv.pk %}" class="portal-btn portal-btn-secondary portal-btn-sm">View</a></td>
+                    <td data-label="Date">{{ cv.created_at|date:"M d, Y" }}</td>
+                    <td data-label="Action"><a href="{% url 'portal:talent_pool_detail' cv.pk %}" class="portal-btn portal-btn-secondary portal-btn-sm">View</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -103,10 +103,10 @@
             <tbody>
                 {% for req in recent_requests %}
                 <tr>
-                    <td><strong>{{ req.client_name }}</strong> {% if req.organization_name %}({{ req.organization_name }}){% endif %}</td>
-                    <td>{{ req.service_type }}</td>
-                    <td>{{ req.location }}</td>
-                    <td>{{ req.created_at|date:"M d, Y" }}</td>
+                    <td data-label="Client"><strong>{{ req.client_name }}</strong> {% if req.organization_name %}({{ req.organization_name }}){% endif %}</td>
+                    <td data-label="Role Needed">{{ req.service_type }}</td>
+                    <td data-label="Location">{{ req.location }}</td>
+                    <td data-label="Date">{{ req.created_at|date:"M d, Y" }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

@@ -40,17 +40,17 @@
             <tbody>
                 {% for cv in cvs %}
                 <tr>
-                    <td><strong>{{ cv.full_name }}</strong></td>
-                    <td>{{ cv.email }}</td>
-                    <td>{{ cv.phone }}</td>
-                    <td>{{ cv.skills|truncatechars:40 }}</td>
-                    <td>
+                    <td data-label="Candidate"><strong>{{ cv.full_name }}</strong></td>
+                    <td data-label="Email">{{ cv.email }}</td>
+                    <td data-label="Phone">{{ cv.phone }}</td>
+                    <td data-label="Skills">{{ cv.skills|truncatechars:40 }}</td>
+                    <td data-label="Status">
                         <span class="badge {% if cv.is_reviewed %}badge-success{% else %}badge-warning{% endif %}">
                             {% if cv.is_reviewed %}Reviewed{% else %}Pending{% endif %}
                         </span>
                     </td>
-                    <td>{{ cv.created_at|date:"M d, Y" }}</td>
-                    <td>
+                    <td data-label="Date">{{ cv.created_at|date:"M d, Y" }}</td>
+                    <td data-label="Action">
                         <a href="{% url 'portal:talent_pool_detail' cv.pk %}" class="portal-btn portal-btn-secondary portal-btn-sm">View Details</a>
                     </td>
                 </tr>

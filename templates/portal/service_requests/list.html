@@ -34,24 +34,24 @@
             <tbody>
                 {% for req in service_requests %}
                 <tr>
-                    <td>
+                    <td data-label="Client">
                         <strong>{{ req.client_name|default:"Not Provided" }}</strong>
                         {% if req.organization_name %}<br><small style="color: var(--portal-text-muted);">{{ req.organization_name }}</small>{% endif %}
                     </td>
-                    <td>
+                    <td data-label="Contact Info">
                         <div><a href="mailto:{{ req.client_email }}" style="color: var(--portal-info); text-decoration: none;">{{ req.client_email }}</a></div>
                         <div><a href="tel:{{ req.client_phone }}" style="color: var(--portal-info); text-decoration: none;">{{ req.client_phone }}</a></div>
                     </td>
-                    <td>
+                    <td data-label="Role Needed">
                         <strong>{{ req.service_type }}</strong>
                         <div style="font-size: 0.8em; color: var(--portal-text-muted);">Hires: {{ req.num_hires }} | {{ req.work_arrangement }}</div>
                     </td>
-                    <td>
+                    <td data-label="Category">
                         <span class="badge badge-neutral">{{ req.staff_category }}</span><br>
                         <small style="color: var(--portal-text-muted);">{{ req.location }}</small>
                     </td>
-                    <td>{{ req.timeline }}</td>
-                    <td>{{ req.created_at|date:"M d, Y" }}</td>
+                    <td data-label="Timeline">{{ req.timeline }}</td>
+                    <td data-label="Date Received">{{ req.created_at|date:"M d, Y" }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

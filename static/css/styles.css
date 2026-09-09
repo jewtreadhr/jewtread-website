@@ -4916,3 +4916,44 @@ button, .btn, .tbl-btn, .save-job, .tab-btn, .nav-dropdown-toggle,
     .value-card { padding: 26px 20px; }
     .leadership-card-img { height: 240px; }
 }
+
+/* --------------------------------------------------------------------------
+   Job seeker admin pages: make inline layouts fully responsive on mobile.
+   -------------------------------------------------------------------------- */
+.alerts-page .container > div[style*="grid-template-columns"] {
+    display: grid;
+}
+
+/* Collapse the alert form sidebar/main layout */
+@media (max-width: 840px) {
+    .alerts-page .container > div[style*="grid-template-columns"],
+    .alerts-page [style*="grid-template-columns: 1fr 340px"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    .alerts-page [style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    .alerts-page [style*="display: flex"] {
+        flex-wrap: wrap;
+    }
+
+    .alerts-page input,
+    .alerts-page select {
+        font-size: 16px;
+    }
+}
+
+/* Profile & CV form: stack the side-by-side email/phone fields */
+@media (max-width: 540px) {
+    .profile-form .form-group[style*="display: flex"] {
+        flex-direction: column !important;
+        align-items: stretch;
+    }
+
+    .profile-form .form-group[style*="display: flex"] > div {
+        flex: 1 1 100% !important;
+        min-width: 0;
+    }
+}
