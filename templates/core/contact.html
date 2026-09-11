@@ -169,5 +169,39 @@
     </footer>
 
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        emailjs.init("yTWIUZR9LnnHt89Ry");
+    </script>
+    <script>
+        document.getElementById("custom-contact-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const btn = document.getElementById("submit-btn");
+        const feedback = document.getElementById("form-feedback");
+
+        btn.disabled = true;
+        btn.querySelector(".btn-text").textContent = "Sending...";
+        feedback.textContent = "";
+        feedback.className = "form-feedback";
+
+        emailjs.send("service_ke07m78", "template_tyu86fa", {
+            fullName: document.getElementById("fullName").value,
+            email: document.getElementById("email").value,
+            telephone: document.getElementById("telephone").value,
+            enquiry: document.getElementById("enquiry").value,
+        }).then(function() {
+            feedback.textContent = "Message sent successfully!";
+            feedback.className = "form-feedback success";
+            document.getElementById("custom-contact-form").reset();
+        }).catch(function(err) {
+            feedback.textContent = "Failed to send message. Please try again later.";
+            feedback.className = "form-feedback error";
+            console.error("EmailJS error:", err);
+        }).finally(function() {
+            btn.disabled = false;
+            btn.querySelector(".btn-text").textContent = "Send Message";
+        });
+        });
+    </script>
 </body>
 </html>
